@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Get Labelsync from generator repository
+
         run: wget https://static.smoothbear.me/labelsync
 
       - name: Allow permissions for execute
