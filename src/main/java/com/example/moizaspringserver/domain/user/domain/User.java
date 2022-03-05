@@ -3,10 +3,13 @@ package com.example.moizaspringserver.domain.user.domain;
 import com.example.moizaspringserver.domain.user.domain.type.School;
 import com.example.moizaspringserver.domain.user.domain.type.Sex;
 import com.example.moizaspringserver.global.enums.UserType;
+import com.example.moizaspringserver.infrastructure.s3.DefaultImage;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,16 +24,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, nullable = false)
+    @NotNull
+    @Length(max = 50)
     private String accountId;
 
-    @Column(length = 60, nullable = false)
+    @NotNull
+    @Length(max = 64)
     private String password;
 
-    @Column(length = 10, nullable = false)
+    @NotNull
+    @Length(max = 10)
     private String name;
 
     @NotNull
+    @ColumnDefault(DefaultImage.USER_PROFILE_IMAGE)
     private String profileImageUrl;
 
     @Column(columnDefinition = "CHAR(7)", nullable = false)
@@ -39,20 +46,24 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @Column(length = 8, nullable = false)
+    @NotNull
+    @Length(max = 8)
     private Long birthDay;
 
-    @Column(length = 200)
+    @NotNull
+    @Length(max = 8)
     private String introduce;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private School school;
 
     @NotNull
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "app_device_token", length = 64, nullable = false)
     private String appDeviceToken;
@@ -63,7 +74,7 @@ public class User {
     @Builder
     public User(String accountId, String password, String name, String profileImageUrl,
                 Long profileBackgroundColor, Sex sex, Long birthDay, String introduce,
-                UserType userType, School school, LocalDateTime createAt,
+                UserType userType, School school, LocalDateTime createdAt,
                 String appDeviceToken, String webDeviceToken) {
 
         this.accountId = accountId;
@@ -76,7 +87,7 @@ public class User {
         this.introduce = introduce;
         this.userType = userType;
         this.school = school;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
         this.appDeviceToken = appDeviceToken;
         this.webDeviceToken = webDeviceToken;
     }
