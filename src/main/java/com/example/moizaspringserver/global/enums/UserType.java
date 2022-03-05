@@ -1,8 +1,8 @@
 package com.example.moizaspringserver.global.enums;
 
 public enum UserType {
-    STUDENT,
-    GRADUATE,
-    USER,
-    ADMIN
+    ROLE_STUDENT,
+    ROLE_GRADUATE,
+    ROLE_USER,
+    ROLE_ADMIN
 }
