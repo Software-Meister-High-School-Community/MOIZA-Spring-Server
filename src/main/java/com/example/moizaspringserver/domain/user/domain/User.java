@@ -40,9 +40,11 @@ public class User {
     @ColumnDefault(DefaultImage.USER_PROFILE_IMAGE)
     private String profileImageUrl;
 
-    @Column(columnDefinition = "CHAR(7)", nullable = false)
-    private Long profileBackgroundColor;
+    @NotNull
+    @Length(max = 7)
+    private String profileBackgroundColor;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
@@ -65,15 +67,15 @@ public class User {
     @NotNull
     private LocalDateTime createdAt;
 
-    @Column(name = "app_device_token", length = 64, nullable = false)
+    @Column(name = "app_device_token", length = 64)
     private String appDeviceToken;
 
-    @Column(name = "web_device_token", length = 64, nullable = false)
+    @Column(name = "web_device_token", length = 64)
     private String webDeviceToken;
 
     @Builder
     public User(String accountId, String password, String name, String profileImageUrl,
-                Long profileBackgroundColor, Sex sex, Long birthDay, String introduce,
+                String profileBackgroundColor, Sex sex, Long birthDay, String introduce,
                 UserType userType, School school, LocalDateTime createdAt,
                 String appDeviceToken, String webDeviceToken) {
 
