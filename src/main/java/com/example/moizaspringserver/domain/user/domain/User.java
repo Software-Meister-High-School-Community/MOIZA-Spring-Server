@@ -2,6 +2,7 @@ package com.example.moizaspringserver.domain.user.domain;
 
 import com.example.moizaspringserver.domain.user.domain.type.School;
 import com.example.moizaspringserver.domain.user.domain.type.Sex;
+import com.example.moizaspringserver.global.entity.BaseTimeEntity;
 import com.example.moizaspringserver.global.enums.UserType;
 import com.example.moizaspringserver.infrastructure.s3.DefaultImage;
 import lombok.AccessLevel;
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class User {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
