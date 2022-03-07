@@ -67,10 +67,10 @@ public class User {
     @NotNull
     private LocalDateTime createdAt;
 
-    @Column(name = "app_device_token", length = 64)
+    @Length(max = 64)
     private String appDeviceToken;
 
-    @Column(name = "web_device_token", length = 64)
+    @Length(max = 64)
     private String webDeviceToken;
 
     @Builder
