@@ -2,7 +2,7 @@ package com.example.moizaspringserver.domain.user.domain;
 
 import com.example.moizaspringserver.domain.user.domain.type.School;
 import com.example.moizaspringserver.domain.user.domain.type.Sex;
-import com.example.moizaspringserver.global.entity.BaseTimeEntity;
+import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import com.example.moizaspringserver.global.enums.UserType;
 import com.example.moizaspringserver.infrastructure.s3.DefaultImage;
 import lombok.AccessLevel;
@@ -14,12 +14,12 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class User extends BaseTimeEntity {
+@Table(name = "tbl_user")
+public class User extends BaseTimeIdEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,9 +65,6 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private School school;
 
-    @NotNull
-    private LocalDateTime createdAt;
-
     @Length(max = 64)
     private String appDeviceToken;
 
@@ -77,8 +74,7 @@ public class User extends BaseTimeEntity {
     @Builder
     public User(String accountId, String password, String name, String profileImageUrl,
                 String profileBackgroundColor, Sex sex, Long birthDay, String introduce,
-                UserType userType, School school, LocalDateTime createdAt,
-                String appDeviceToken, String webDeviceToken) {
+                UserType userType, School school, String appDeviceToken, String webDeviceToken) {
 
         this.accountId = accountId;
         this.password = password;
@@ -90,7 +86,6 @@ public class User extends BaseTimeEntity {
         this.introduce = introduce;
         this.userType = userType;
         this.school = school;
-        this.createdAt = createdAt;
         this.appDeviceToken = appDeviceToken;
         this.webDeviceToken = webDeviceToken;
     }
