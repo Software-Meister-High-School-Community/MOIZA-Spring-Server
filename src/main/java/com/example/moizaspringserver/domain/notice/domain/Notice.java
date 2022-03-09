@@ -5,6 +5,7 @@ import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -25,10 +26,12 @@ public class Notice extends BaseTimeIdEntity {
     private String content;
 
     @NotNull
-    private Boolean isUpdated = false;
+    @ColumnDefault(value= "false")
+    private Boolean isUpdated;
 
     @NotNull
-    private Boolean isPinned = false;
+    @ColumnDefault(value= "false")
+    private Boolean isPinned;
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name= "user_id")
