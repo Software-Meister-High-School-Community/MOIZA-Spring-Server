@@ -3,6 +3,7 @@ package com.example.moizaspringserver.domain.notice.domain;
 import com.example.moizaspringserver.domain.user.domain.User;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
@@ -36,4 +37,13 @@ public class Notice extends BaseTimeIdEntity {
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name= "user_id")
     private User user;
+
+    @Builder
+    public Notice(String title, String content, Boolean isUpdated, Boolean isPinned, User user) {
+        this.title = title;
+        this.content = content;
+        this.isUpdated = isUpdated;
+        this.isPinned = isPinned;
+        this.user = user;
+    }
 }
