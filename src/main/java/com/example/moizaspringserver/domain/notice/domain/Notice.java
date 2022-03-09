@@ -30,7 +30,7 @@ public class Notice extends BaseTimeIdEntity {
     @NotNull
     private Boolean isPinned = false;
 
-    @JoinColumn(name= "user_id")
     @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name= "user_id")
     private User user;
 }
