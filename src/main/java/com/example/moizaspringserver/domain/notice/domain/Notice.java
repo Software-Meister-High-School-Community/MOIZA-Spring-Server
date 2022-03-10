@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@DynamicInsert
 @Table(name= "tbl_notice")
 public class Notice extends BaseTimeIdEntity {
 
