@@ -1,5 +1,6 @@
-package com.example.moizaspringserver.domain.user.domain;
+package com.example.moizaspringserver.domain.user.domain.domain;
 
+import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,11 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "tbl_user_introduce_link")
-public class UserIntroduceLink {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class UserIntroduceLink extends BaseTimeIdEntity {
 
     @NotNull
     @Length

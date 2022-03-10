@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.user.domain;
+package com.example.moizaspringserver.domain.user.domain.domain;
 
 import com.example.moizaspringserver.domain.user.domain.type.School;
 import com.example.moizaspringserver.domain.user.domain.type.Sex;
