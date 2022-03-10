@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.notice.domain;
+package com.example.moizaspringserver.domain.notice.entity;
 
 import com.example.moizaspringserver.domain.user.domain.User;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;

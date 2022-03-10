@@ -1,6 +1,6 @@
-package com.example.moizaspringserver.domain.notice.domain.repository;
+package com.example.moizaspringserver.domain.notice.repository;
 
-import com.example.moizaspringserver.domain.notice.domain.Notice;
+import com.example.moizaspringserver.domain.notice.entity.Notice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NoticeRepository extends JpaRepository<Notice, Long> {
