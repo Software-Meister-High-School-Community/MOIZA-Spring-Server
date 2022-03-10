@@ -2,7 +2,7 @@ package com.example.moizaspringserver.feed.domain;
 
 import com.example.moizaspringserver.domain.user.domain.User;
 import com.example.moizaspringserver.feed.domain.type.FeedType;
-import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
+import com.example.moizaspringserver.global.entity.BaseIdEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,11 +15,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "tbl_feed")
-public class Feed extends BaseTimeIdEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Feed extends BaseIdEntity {
 
     @NotNull
     @Enumerated(EnumType.STRING)
