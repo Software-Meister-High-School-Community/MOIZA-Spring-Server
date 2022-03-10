@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.user.domain.type;
+package com.example.moizaspringserver.domain.user.type;
 
 public enum School {
     DSM,

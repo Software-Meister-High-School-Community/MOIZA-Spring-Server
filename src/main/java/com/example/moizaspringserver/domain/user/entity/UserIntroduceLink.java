@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.user.domain.domain;
+package com.example.moizaspringserver.domain.user.entity;
 
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import lombok.AccessLevel;

@@ -1,7 +1,7 @@
-package com.example.moizaspringserver.domain.user.domain.domain;
+package com.example.moizaspringserver.domain.user.entity;
 
-import com.example.moizaspringserver.domain.user.domain.type.School;
-import com.example.moizaspringserver.domain.user.domain.type.Sex;
+import com.example.moizaspringserver.domain.user.type.School;
+import com.example.moizaspringserver.domain.user.type.Sex;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import com.example.moizaspringserver.global.enums.UserType;
 import com.example.moizaspringserver.infrastructure.s3.DefaultImage;
