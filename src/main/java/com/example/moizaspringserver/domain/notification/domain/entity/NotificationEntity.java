@@ -29,15 +29,14 @@ public class NotificationEntity extends BaseTimeIdEntity {
     private String content;
 
     @NotNull
-    @Length(max = 5)
-    private String data;
+    private Long data;
 
     @NotNull
     @Enumerated(EnumType.STRING)
     private Type type;
 
     @Builder
-    public NotificationEntity(String title, String content, String data, Type type) {
+    public NotificationEntity(String title, String content, Long data, Type type) {
         this.title = title;
         this.content = content;
         this.data = data;
