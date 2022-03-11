@@ -1,7 +1,7 @@
-package com.example.moizaspringserver.feed.domain;
+package com.example.moizaspringserver.feed.entity;
 
 import com.example.moizaspringserver.domain.user.domain.User;
-import com.example.moizaspringserver.feed.domain.type.FeedType;
+import com.example.moizaspringserver.feed.type.FeedType;
 import com.example.moizaspringserver.global.entity.BaseIdEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
