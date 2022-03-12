@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,12 +26,10 @@ public class Notice extends BaseTimeIdEntity {
     private String title;
 
     @NotNull
-    @Length
+    @Length(max = 500)
     private String content;
 
-    @NotNull
-    @ColumnDefault(value= "false")
-    private Boolean isUpdated;
+    private LocalDateTime updatedAt;
 
     @NotNull
     @ColumnDefault(value= "false")
@@ -41,10 +40,10 @@ public class Notice extends BaseTimeIdEntity {
     private User user;
 
     @Builder
-    public Notice(String title, String content, Boolean isUpdated, Boolean isPinned, User user) {
+    public Notice(String title, String content, LocalDateTime updatedAt, Boolean isPinned, User user) {
         this.title = title;
         this.content = content;
-        this.isUpdated = isUpdated;
+        this.updatedAt = updatedAt;
         this.isPinned = isPinned;
         this.user = user;
     }
