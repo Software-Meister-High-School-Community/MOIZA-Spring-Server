@@ -40,10 +40,9 @@ public class Notice extends BaseTimeIdEntity {
     private User user;
 
     @Builder
-    public Notice(String title, String content, LocalDateTime updatedAt, Boolean isPinned, User user) {
+    public Notice(String title, String content, Boolean isPinned, User user) {
         this.title = title;
         this.content = content;
-        this.updatedAt = updatedAt;
         this.isPinned = isPinned;
         this.user = user;
     }
