@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Embeddable
 @DynamicInsert
+@Entity
 @Table(name = "tbl_public_feed")
 public class PublicFeed extends BaseTimeEntity {
 
@@ -40,10 +40,9 @@ public class PublicFeed extends BaseTimeEntity {
     private Integer likeCount;
 
     @Builder
-    public PublicFeed(String title, String content, LocalDateTime updatedAt, Integer likeCount, Feed feed) {
+    public PublicFeed(String title, String content, Integer likeCount, Feed feed) {
         this.title = title;
         this.content = content;
-        this.updatedAt = updatedAt;
         this.likeCount = likeCount;
         this.feed = feed;
     }
