@@ -1,6 +1,6 @@
 package com.example.moizaspringserver.feed.entity;
 
-import com.example.moizaspringserver.global.entity.BaseIdEntity;
+import com.example.moizaspringserver.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,15 +12,14 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
+@Embeddable
 @Table(name = "tbl_local_feed")
-public class LocalFeed extends BaseIdEntity {
+public class LocalFeed extends BaseTimeEntity {
 
     @NotNull
     @Length(max = 30)
     private String title;
 
-    @NotNull
     @Length(max = 500)
     private String content;
 

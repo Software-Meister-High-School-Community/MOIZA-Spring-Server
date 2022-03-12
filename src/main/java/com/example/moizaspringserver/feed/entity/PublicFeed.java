@@ -1,6 +1,6 @@
 package com.example.moizaspringserver.feed.entity;
 
-import com.example.moizaspringserver.global.entity.BaseIdEntity;
+import com.example.moizaspringserver.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,10 +15,11 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
+@Embeddable
 @DynamicInsert
 @Table(name = "tbl_public_feed")
-public class PublicFeed extends BaseIdEntity {
+public class PublicFeed extends BaseTimeEntity {
+
     @NotNull
     @Length(max = 30)
     private String title;
@@ -27,7 +28,6 @@ public class PublicFeed extends BaseIdEntity {
     @Length(max = 500)
     private String content;
 
-    @NotNull
     private LocalDateTime updatedAt;
 
     @NotNull
