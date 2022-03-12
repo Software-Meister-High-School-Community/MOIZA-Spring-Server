@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.follow.domain.entity;
+package com.example.moizaspringserver.domain.follow.entity;
 
 import com.example.moizaspringserver.domain.user.domain.User;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;

@@ -1,6 +1,6 @@
-package com.example.moizaspringserver.domain.notification.domain.entity;
+package com.example.moizaspringserver.domain.notification.entity;
 
-import com.example.moizaspringserver.domain.notification.domain.type.Type;
+import com.example.moizaspringserver.domain.notification.type.Type;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
