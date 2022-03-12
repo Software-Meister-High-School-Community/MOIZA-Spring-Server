@@ -1,7 +1,6 @@
-package com.example.moizaspringserver.domain.report.domain.embedded;
+package com.example.moizaspringserver.domain.report.entity;
 
-import com.example.moizaspringserver.domain.report.domain.Report;
-import com.example.moizaspringserver.domain.user.domain.User;
+import com.example.moizaspringserver.domain.user.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

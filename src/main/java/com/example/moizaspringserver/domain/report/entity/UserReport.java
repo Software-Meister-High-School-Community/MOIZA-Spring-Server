@@ -1,6 +1,5 @@
-package com.example.moizaspringserver.domain.report.domain;
+package com.example.moizaspringserver.domain.report.entity;
 
-import com.example.moizaspringserver.domain.report.domain.embedded.UserReportId;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
