@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 public class UserIntroduceLink extends BaseIdEntity {
 
     @NotNull
-    @Length
+    @Length(max = 255)
     private String linkUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
