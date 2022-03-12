@@ -3,6 +3,7 @@ package com.example.moizaspringserver.domain.report.entity;
 import com.example.moizaspringserver.domain.user.entity.User;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,4 +23,8 @@ public class Report extends BaseTimeIdEntity {
     @JoinColumn(name = "reported_user_id", nullable = false)
     private User user;
 
+    @Builder
+    public Report(User user) {
+        this.user = user;
+    }
 }
