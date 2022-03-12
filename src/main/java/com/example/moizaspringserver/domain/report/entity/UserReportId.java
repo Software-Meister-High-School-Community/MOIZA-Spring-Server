@@ -1,6 +1,7 @@
 package com.example.moizaspringserver.domain.report.entity;
 
 import com.example.moizaspringserver.domain.user.entity.User;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 
 @Getter
 @Embeddable
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserReportId implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
