@@ -18,11 +18,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @DynamicInsert
-@Table(name= "tbl_notice")
+@Table(name = "tbl_notice")
 public class Notice extends BaseTimeIdEntity {
 
     @NotNull
-    @Length(max= 30)
+    @Length(max = 30)
     private String title;
 
     @NotNull
@@ -32,11 +32,11 @@ public class Notice extends BaseTimeIdEntity {
     private LocalDateTime updatedAt;
 
     @NotNull
-    @ColumnDefault(value= "false")
+    @ColumnDefault(value = "false")
     private Boolean isPinned;
 
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name= "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Builder
