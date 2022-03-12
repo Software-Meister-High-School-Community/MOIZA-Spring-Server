@@ -28,10 +28,10 @@ public class PublicFeed extends BaseIdEntity {
     private String content;
 
     @NotNull
-    @ColumnDefault("0")
     private LocalDateTime updatedAt;
 
     @NotNull
+    @ColumnDefault("0")
     private Integer likeCount;
 
     @OneToOne(fetch = FetchType.LAZY)
