@@ -20,6 +20,11 @@ import java.time.LocalDateTime;
 @Table(name = "tbl_public_feed")
 public class PublicFeed extends BaseTimeEntity {
 
+    @Id
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "feed_id", nullable = false)
+    private Feed feed;
+
     @NotNull
     @Length(max = 30)
     private String title;
@@ -33,10 +38,6 @@ public class PublicFeed extends BaseTimeEntity {
     @NotNull
     @ColumnDefault("0")
     private Integer likeCount;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "feed_id", nullable = false)
-    private Feed feed;
 
     @Builder
     public PublicFeed(String title, String content, LocalDateTime updatedAt, Integer likeCount, Feed feed) {

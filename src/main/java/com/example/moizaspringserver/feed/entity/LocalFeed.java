@@ -12,9 +12,14 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Embeddable
+@Entity
 @Table(name = "tbl_local_feed")
 public class LocalFeed extends BaseTimeEntity {
+
+    @Id
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "feed_id", nullable = false)
+    private Feed feed;
 
     @NotNull
     @Length(max = 30)
@@ -22,10 +27,6 @@ public class LocalFeed extends BaseTimeEntity {
 
     @Length(max = 500)
     private String content;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "feed_id", nullable = false)
-    private Feed feed;
 
     @Builder
     public LocalFeed(String title, String content, Feed feed) {
