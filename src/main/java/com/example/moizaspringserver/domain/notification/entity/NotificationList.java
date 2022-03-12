@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.notification.domain.entity;
+package com.example.moizaspringserver.domain.notification.entity;
 
 import lombok.AccessLevel;
 import lombok.Getter;

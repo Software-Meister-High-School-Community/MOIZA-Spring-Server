@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.feed.entity;
+package com.example.moizaspringserver.domain.feed.entity;
 
 import com.example.moizaspringserver.global.entity.BaseIdEntity;
 import lombok.AccessLevel;

@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.notification.domain.type;
+package com.example.moizaspringserver.domain.notification.type;
 
 public enum Type {
     NOTICE,
