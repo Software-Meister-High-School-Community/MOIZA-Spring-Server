@@ -1,6 +1,6 @@
-package com.example.moizaspringserver.domain.user.domain.repository;
+package com.example.moizaspringserver.domain.user.repository;
 
-import com.example.moizaspringserver.domain.user.domain.User;
+import com.example.moizaspringserver.domain.user.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
