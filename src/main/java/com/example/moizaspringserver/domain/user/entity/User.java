@@ -21,10 +21,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "tbl_user")
 public class User extends BaseTimeIdEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @NotNull
     @Length(max = 50)
     private String accountId;
