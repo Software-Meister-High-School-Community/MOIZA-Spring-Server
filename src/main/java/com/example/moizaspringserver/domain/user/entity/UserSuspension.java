@@ -1,6 +1,6 @@
 package com.example.moizaspringserver.domain.user.entity;
 
-import com.example.moizaspringserver.global.entity.BaseIdEntity;
+import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "tbl_user_suspension")
-public class UserSuspension extends BaseIdEntity {
+public class UserSuspension extends BaseTimeIdEntity {
 
     @NotNull
     private LocalDateTime expiredAt;
