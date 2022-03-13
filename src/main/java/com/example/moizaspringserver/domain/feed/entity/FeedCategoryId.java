@@ -2,9 +2,6 @@ package com.example.moizaspringserver.domain.feed.entity;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,16 +12,12 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class FeedCategoryId implements Serializable {
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "feed_id", nullable = false)
-	private Feed feed;
+	private Integer feed;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category_id", nullable = false)
-	private Category category;
+	private Integer category;
 
 	@Builder
-	public FeedCategoryId(Feed feed, Category category) {
+	public FeedCategoryId(Integer feed, Integer category) {
 		this.feed = feed;
 		this.category = category;
 	}
