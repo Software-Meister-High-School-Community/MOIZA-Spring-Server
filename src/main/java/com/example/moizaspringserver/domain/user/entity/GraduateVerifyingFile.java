@@ -7,9 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.EmbeddedId;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
@@ -22,8 +23,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "tbl_graduate_verifying_file")
 public class GraduateVerifyingFile extends BaseTimeEntity {
 
-    @EmbeddedId
-    private GraduateVerifyingFileId id;
+    @Id
+    private Integer userId;
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY)
@@ -35,8 +36,7 @@ public class GraduateVerifyingFile extends BaseTimeEntity {
     private String verifyingFileUrl;
 
     @Builder
-    public GraduateVerifyingFile(GraduateVerifyingFileId id, User user, String verifyingFileUrl) {
-        this.id = id;
+    public GraduateVerifyingFile(User user, String verifyingFileUrl) {
         this.user = user;
         this.verifyingFileUrl = verifyingFileUrl;
     }
