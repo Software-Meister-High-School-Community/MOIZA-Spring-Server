@@ -30,7 +30,7 @@ public class Comment extends BaseTimeIdEntity {
     @ColumnDefault(value = "false")
     private Boolean isPinned;
 
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -41,7 +41,7 @@ public class Comment extends BaseTimeIdEntity {
     private Feed feed;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_comment_id", referencedColumnName = "comment_id", nullable = false)
+    @JoinColumn(name = "parent_comment_id", referencedColumnName = "comment_id")
     private Comment parentComment;
 
     @Builder
