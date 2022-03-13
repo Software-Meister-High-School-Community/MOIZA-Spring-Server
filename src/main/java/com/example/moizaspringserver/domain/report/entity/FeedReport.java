@@ -24,12 +24,12 @@ public class FeedReport extends BaseTimeIdEntity {
     @EmbeddedId
     private FeedReportId id;
 
-    @MapsId
+    @MapsId("feed")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feed_id", nullable = false)
     private Feed feed;
 
-    @MapsId
+    @MapsId("report")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "report_id", nullable = false)
     private Report report;

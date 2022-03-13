@@ -15,11 +15,11 @@ public class FeedReportId implements Serializable {
 
     private Integer feed;
 
-    private Integer user;
+    private Integer report;
 
     @Builder
-    public FeedReportId(Integer feed, Integer user) {
+    public FeedReportId(Integer feed, Integer report) {
         this.feed = feed;
-        this.user = user;
+        this.report = report;
     }
 }

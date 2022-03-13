@@ -24,12 +24,12 @@ public class UserReport extends BaseTimeIdEntity {
     @EmbeddedId
     private UserReportId id;
 
-    @MapsId
+    @MapsId("user")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @MapsId
+    @MapsId("report")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "report_id", nullable = false)
     private Report report;
