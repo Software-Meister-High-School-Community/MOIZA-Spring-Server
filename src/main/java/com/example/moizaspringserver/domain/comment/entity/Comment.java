@@ -41,7 +41,7 @@ public class Comment extends BaseTimeIdEntity {
     private Feed feed;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_comment_id", referencedColumnName = "comment_id")
+    @JoinColumn(name = "parent_comment_id")
     private Comment parentComment;
 
     @Builder
