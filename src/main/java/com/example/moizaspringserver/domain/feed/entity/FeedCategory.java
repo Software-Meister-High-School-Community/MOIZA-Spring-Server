@@ -4,6 +4,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,4 +16,9 @@ public class FeedCategory {
 
 	@EmbeddedId
 	private FeedCategoryId id;
+
+	@Builder
+	public FeedCategory(FeedCategoryId id) {
+		this.id = id;
+	}
 }
