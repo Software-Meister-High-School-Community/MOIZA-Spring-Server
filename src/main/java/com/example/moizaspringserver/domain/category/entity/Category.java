@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.feed.entity;
+package com.example.moizaspringserver.domain.category.entity;
 
 import com.example.moizaspringserver.global.entity.BaseIdEntity;
 import javax.persistence.Entity;

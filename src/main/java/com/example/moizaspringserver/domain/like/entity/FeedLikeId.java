@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.domain.feed.entity;
+package com.example.moizaspringserver.domain.like.entity;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;
