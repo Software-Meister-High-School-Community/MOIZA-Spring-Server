@@ -21,6 +21,9 @@ import java.time.LocalDateTime;
 public class PublicFeed extends BaseTimeEntity {
 
     @Id
+    private Integer feedId;
+
+    @MapsId
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feed_id", nullable = false)
     private Feed feed;
