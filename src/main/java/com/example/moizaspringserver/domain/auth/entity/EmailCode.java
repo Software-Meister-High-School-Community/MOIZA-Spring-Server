@@ -24,12 +24,15 @@ public class EmailCode {
 	@TimeToLive
 	private Long timeToLive;
 
+	private Boolean isVerify;
+
 	@Builder
 	public EmailCode(String email, String authCode,
-		Type type, Long timeToLive) {
+		Type type, Long timeToLive, Boolean isVerify) {
 		this.email = email;
 		this.authCode = authCode;
 		this.type = type;
 		this.timeToLive = timeToLive;
+		this.isVerify = isVerify;
 	}
 }
