@@ -16,10 +16,13 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(CustomException.class)
-    public ResponseEntity<ErrorResponse> handleGlobal(CustomException e) {
+    public ResponseEntity<ErrorResponse> handleGlobalException(CustomException e) {
         final ErrorCode errorCode = e.getErrorCode();
         return new ResponseEntity<>(
-                new ErrorResponse(errorCode.getStatus(), errorCode.getMessage()),
+                ErrorResponse.builder()
+                        .status(errorCode.getStatus())
+                        .message(errorCode.getMessage())
+                        .build(),
                 HttpStatus.valueOf(errorCode.getStatus())
         );
     }
