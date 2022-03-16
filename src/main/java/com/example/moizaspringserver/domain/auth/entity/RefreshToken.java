@@ -27,6 +27,6 @@ public class RefreshToken {
 	public RefreshToken(String email, String refreshToken) {
 		this.email = email;
 		this.refreshToken = refreshToken;
-		this.timeToLive = 3600L;
+		this.timeToLive = 3600L * 2;
 	}
 }
