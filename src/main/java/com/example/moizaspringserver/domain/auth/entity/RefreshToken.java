@@ -24,9 +24,9 @@ public class RefreshToken {
 	private Long timeToLive;
 
 	@Builder
-	public RefreshToken(String email, String refreshToken, Long timeToLive) {
+	public RefreshToken(String email, String refreshToken) {
 		this.email = email;
 		this.refreshToken = refreshToken;
-		this.timeToLive = timeToLive;
+		this.timeToLive = 3600L;
 	}
 }

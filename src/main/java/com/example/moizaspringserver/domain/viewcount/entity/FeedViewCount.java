@@ -18,8 +18,8 @@ public class FeedViewCount {
 	private Integer viewCount;
 
 	@Builder
-	public FeedViewCount(Integer feedId, Integer viewCount) {
+	public FeedViewCount(Integer feedId) {
 		this.feedId = feedId;
-		this.viewCount = viewCount;
+		this.viewCount = 0;
 	}
 }
