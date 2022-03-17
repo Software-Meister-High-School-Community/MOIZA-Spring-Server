@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "tbl_user_report")
-public class UserReport extends BaseTimeIdEntity {
+public class UserReport {
 
     @EmbeddedId
     private UserReportId id;
