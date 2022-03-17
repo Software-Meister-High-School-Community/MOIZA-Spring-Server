@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "tbl_feed_report")
-public class FeedReport extends BaseTimeIdEntity {
+public class FeedReport {
 
     @EmbeddedId
     private FeedReportId id;
