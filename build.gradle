@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.6.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "org.sonarqube" version "3.3"
 }
 
 group = 'com.example'
@@ -41,4 +42,12 @@ jar {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "Software-Meister-High-School-Community_MOIZA-Spring-Server"
+		property "sonar.organization", "software-meister-high-school-community"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
 }
