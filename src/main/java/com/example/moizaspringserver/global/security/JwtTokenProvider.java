@@ -2,6 +2,7 @@ package com.example.moizaspringserver.global.security;
 
 import com.example.moizaspringserver.global.config.JwtProperties;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.Authentication;
@@ -29,18 +30,20 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public String getUserId(String jwtToken) {
-        Claims claims = Jwts.parser()
+    private Jws<Claims> parseToken(String jwtToken) {
+        return Jwts.parser()
                 .setSigningKey(SECRET_JWT)
-                .parseClaimsJws(jwtToken)
-                .getBody();
+                .parseClaimsJws(jwtToken);
+    }
 
+    public String getUserId(String jwtToken) {
+        Claims claims = parseToken(jwtToken).getBody();
         return claims.getSubject();
     }
 
     public Boolean validation(String jwtToken) {
         try {
-            Jwts.parser().setSigningKey(SECRET_JWT).parseClaimsJws(jwtToken);
+            parseToken(jwtToken);
             return true;
         } catch (Exception ex) { return false; }
     }
