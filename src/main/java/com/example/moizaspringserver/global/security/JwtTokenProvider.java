@@ -19,7 +19,7 @@ public class JwtTokenProvider {
 
     public String generate(Authentication auth) {
         Date now = new Date();
-        Date expiresAt = new Date();
+        Date expiresAt = new Date(now.getTime() + (1000 * 60 * 60 * 2)); // Expires after 2 days
 
         return Jwts.builder()
                 .setSubject((String) auth.getPrincipal())
