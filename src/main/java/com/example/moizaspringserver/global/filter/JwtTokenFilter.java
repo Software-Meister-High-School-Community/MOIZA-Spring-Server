@@ -1,5 +1,9 @@
 package com.example.moizaspringserver.global.filter;
 
+import com.example.moizaspringserver.global.error.exception.CustomException;
+import com.example.moizaspringserver.global.error.exception.ErrorCode;
+import com.example.moizaspringserver.global.error.security.InvalidTokenException;
+import com.example.moizaspringserver.global.error.security.NoTokenServedException;
 import com.example.moizaspringserver.global.security.JwtTokenProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
@@ -18,14 +22,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        try {
-            String jwtToken = this.parseJwtToken(request);
-            if(StringUtils.isEmpty(jwtToken)) request.setAttribute("unauthorization", "token required");
-            else if(!jwtTokenProvider.validation(jwtToken)) request.setAttribute("unauthorization", "invalid or expired token");
+        String jwtToken = this.parseJwtToken(request);
+        if(StringUtils.isEmpty(jwtToken)) throw new NoTokenServedException();
+        else if(!jwtTokenProvider.validation(jwtToken)) throw new InvalidTokenException();
 
-        }catch (Exception ex) {
-            request.setAttribute("unauthorization", "something went wrong");
-        }
         filterChain.doFilter(request, response);
     }
 
