@@ -1,12 +1,15 @@
 package com.example.moizaspringserver.global.security;
 
 import com.example.moizaspringserver.global.config.JwtProperties;
+import com.example.moizaspringserver.global.error.security.InvalidTokenException;
+import com.example.moizaspringserver.global.error.security.NoTokenServedException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -41,11 +44,14 @@ public class JwtTokenProvider {
         return claims.getSubject();
     }
 
-    public Boolean validation(String jwtToken) {
+    public void validation(String jwtToken) {
+        if(StringUtils.isEmpty(jwtToken)) throw new NoTokenServedException();
+
         try {
             parseToken(jwtToken);
-            return true;
-        } catch (Exception ex) { return false; }
+        } catch (Exception ex) {
+            throw new InvalidTokenException();
+        }
     }
 
 }
