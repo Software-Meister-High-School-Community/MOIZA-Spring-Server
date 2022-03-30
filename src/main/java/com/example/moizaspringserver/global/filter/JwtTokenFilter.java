@@ -6,6 +6,7 @@ import com.example.moizaspringserver.global.error.security.InvalidTokenException
 import com.example.moizaspringserver.global.error.security.NoTokenServedException;
 import com.example.moizaspringserver.global.security.JwtTokenProvider;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
 
     private final JwtTokenProvider jwtTokenProvider;
