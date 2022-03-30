@@ -1,14 +1,14 @@
 package com.example.moizaspringserver.global.config;
 
 import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @ConfigurationProperties(prefix = "jwt")
 @Component
 @Getter
-@Setter
+@RequiredArgsConstructor
 public class JwtProperties {
-    private String secret;
+    private final String secret;
 }
