@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ErrorCode {
-        INVALID_TOKEN(400, "Expired or wrong token served"),
+        INVALID_TOKEN(401, "Expired or wrong token served"),
         NO_TOKEN_SERVED(400, "No token served")
     ;
 
