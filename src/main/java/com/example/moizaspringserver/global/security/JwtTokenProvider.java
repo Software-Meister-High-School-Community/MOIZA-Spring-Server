@@ -49,7 +49,7 @@ public class JwtTokenProvider {
         try {
             parseToken(jwtToken);
         } catch (Exception ex) {
-            throw new InvalidTokenException();
+            throw InvalidTokenException.EXCEPTION;
         }
         return true;
     }
