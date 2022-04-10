@@ -2,15 +2,16 @@ package com.example.moizaspringserver.global.security;
 
 import lombok.Getter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import java.util.Collection;
 
 @Getter
-public class JwtTokenAuthentication extends AbstractAuthenticationToken {
+public class JwtTokenAuthentication extends UsernamePasswordAuthenticationToken {
 
     private final String jwtToken;
     public JwtTokenAuthentication(String jwtToken, Boolean authenticated) {
-        super((Collection)null);
+        super(null, null, (Collection)null);
         this.jwtToken = jwtToken;
         this.setAuthenticated(authenticated);
     }
