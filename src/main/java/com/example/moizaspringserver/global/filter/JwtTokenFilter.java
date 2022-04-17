@@ -1,9 +1,8 @@
 package com.example.moizaspringserver.global.filter;
 
-import com.example.moizaspringserver.global.error.security.InvalidTokenException;
-import com.example.moizaspringserver.global.security.JwtTokenAuthentication;
 import com.example.moizaspringserver.global.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -23,9 +22,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwtToken = this.parseJwtToken(request);
 
-        Boolean validated = jwtTokenProvider.validation(jwtToken);
-        JwtTokenAuthentication jwtAuthentication = new JwtTokenAuthentication(jwtToken, validated);
-        SecurityContextHolder.getContext().setAuthentication(jwtAuthentication);
+        Authentication authentication = jwtTokenProvider.validation(jwtToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         filterChain.doFilter(request, response);
     }
