@@ -6,6 +6,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -43,15 +44,21 @@ public class JwtTokenProvider {
         return claims.getSubject();
     }
 
-    public boolean validation(String jwtToken) {
-        if(jwtToken == null || StringUtils.isEmpty(jwtToken)) return false;
+    public Authentication validation(String jwtToken) {
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(null, jwtToken);
 
-        try {
-            parseToken(jwtToken);
-        } catch (Exception ex) {
-            throw InvalidTokenException.EXCEPTION;
+        if(jwtToken == null || StringUtils.isEmpty(jwtToken)) {
+            authentication.setAuthenticated(false);
+        } else {
+            try {
+                parseToken(jwtToken);
+                authentication.setAuthenticated(true);
+            } catch (Exception ex) {
+                authentication.setAuthenticated(false);
+            }
         }
-        return true;
+
+        return authentication;
     }
 
 }
