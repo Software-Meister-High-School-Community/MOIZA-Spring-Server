@@ -21,12 +21,12 @@ public class JwtTokenProvider {
         SECRET_JWT = jwtProperties.getSecret();
     }
 
-    public String generate(Authentication auth) {
+    public String generate(Long userId) {
         Date now = new Date();
         Date expiresAt = new Date(now.getTime() + (1000 * 60 * 60 * 2)); // Expires after 2 days
 
         return Jwts.builder()
-                .setSubject((String) auth.getPrincipal())
+                .setSubject(userId + "")
                 .setIssuedAt(now)
                 .setExpiration(expiresAt)
                 .signWith(SignatureAlgorithm.HS256, SECRET_JWT)
