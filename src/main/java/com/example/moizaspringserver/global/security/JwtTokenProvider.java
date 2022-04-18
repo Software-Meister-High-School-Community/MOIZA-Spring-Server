@@ -47,16 +47,13 @@ public class JwtTokenProvider {
     public Authentication validation(String jwtToken) {
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(null, jwtToken);
 
-        if(jwtToken == null || StringUtils.isEmpty(jwtToken)) {
+        try {
+            parseToken(jwtToken);
+            authentication.setAuthenticated(true);
+        } catch (Exception ex) {
             authentication.setAuthenticated(false);
-        } else {
-            try {
-                parseToken(jwtToken);
-                authentication.setAuthenticated(true);
-            } catch (Exception ex) {
-                authentication.setAuthenticated(false);
-            }
         }
+
 
         return authentication;
     }
