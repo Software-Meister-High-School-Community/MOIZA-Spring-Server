@@ -26,7 +26,7 @@ public class JwtTokenProvider {
         Date expiresAt = new Date(now.getTime() + (1000 * 60 * 60 * 2)); // Expires after 2 days
 
         return Jwts.builder()
-                .setSubject(userId + "")
+                .setSubject(userId.toString())
                 .setIssuedAt(now)
                 .setExpiration(expiresAt)
                 .signWith(SignatureAlgorithm.HS256, SECRET_JWT)
