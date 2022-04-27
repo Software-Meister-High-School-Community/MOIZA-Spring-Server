@@ -5,7 +5,7 @@ import com.example.moizaspringserver.global.error.exception.ErrorCode;
 
 public class InvalidTokenException extends CustomException {
 
-    public static InvalidTokenException EXCEPTION =
+    public static final InvalidTokenException EXCEPTION =
             new InvalidTokenException();
 
     private InvalidTokenException() {
