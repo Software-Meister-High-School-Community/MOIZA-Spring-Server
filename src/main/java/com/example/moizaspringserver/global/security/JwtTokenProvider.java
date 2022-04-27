@@ -1,61 +1,77 @@
 package com.example.moizaspringserver.global.security;
 
-import com.example.moizaspringserver.global.config.JwtProperties;
+import com.example.moizaspringserver.global.error.security.ExpiredTokenException;
 import com.example.moizaspringserver.global.error.security.InvalidTokenException;
+import com.example.moizaspringserver.global.security.auth.AuthDetailsService;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Component
+@RequiredArgsConstructor
 public class JwtTokenProvider {
 
-    private final String SECRET_JWT;
-    public JwtTokenProvider(JwtProperties jwtProperties) {
-        SECRET_JWT = jwtProperties.getSecret();
+    private final JwtProperties jwtProperties;
+    private final AuthDetailsService authDetailsService;
+
+    public String generateAccessToken(String id) {
+        return generateToken(id, "access", jwtProperties.getAccessExp());
     }
 
-    public String generate(Long userId) {
-        Date now = new Date();
-        Date expiresAt = new Date(now.getTime() + (1000 * 60 * 60 * 2)); // Expires after 2 days
-
-        return Jwts.builder()
-                .setSubject(userId.toString())
-                .setIssuedAt(now)
-                .setExpiration(expiresAt)
-                .signWith(SignatureAlgorithm.HS256, SECRET_JWT)
-                .compact();
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader(jwtProperties.getHeader());
+        if (bearerToken != null && bearerToken.startsWith(jwtProperties.getPrefix())) {
+            return bearerToken.replace(jwtProperties.getPrefix(), "");
+        }
+        return null;
     }
 
-    private Jws<Claims> parseToken(String jwtToken) {
-        return Jwts.parser()
-                .setSigningKey(SECRET_JWT)
-                .parseClaimsJws(jwtToken);
+    public Authentication authentication(String token) {
+        UserDetails userDetails = authDetailsService
+                .loadUserByUsername(getTokenSubject(token));
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
-    public String getUserId(String jwtToken) {
-        Claims claims = parseToken(jwtToken).getBody();
-        return claims.getSubject();
+    public String parseToken(String bearerToken) {
+        if (bearerToken != null && bearerToken.startsWith(jwtProperties.getPrefix()))
+            return bearerToken.replace(jwtProperties.getPrefix(), "");
+        return null;
     }
 
-    public Authentication validation(String jwtToken) {
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(null, jwtToken);
+    private Claims getTokenBody(String token) {
 
         try {
-            parseToken(jwtToken);
-            authentication.setAuthenticated(true);
-        } catch (Exception ex) {
-            authentication.setAuthenticated(false);
+            return Jwts.parser().setSigningKey(jwtProperties.getSecretKey())
+                    .parseClaimsJws(token).getBody();
+        } catch (ExpiredTokenException e) {
+            throw ExpiredTokenException.EXCEPTION;
+        } catch (SignatureException e) {
+            throw InvalidTokenException.EXCEPTION;
         }
+    }
 
+    private String getTokenSubject(String token) {
+        return getTokenBody(token).getSubject();
+    }
 
-        return authentication;
+    private String generateToken(String id, String type, Long exp) {
+        return Jwts.builder()
+                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+                .setSubject(id)
+                .claim("type", type)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
+                .compact();
     }
 
 }
