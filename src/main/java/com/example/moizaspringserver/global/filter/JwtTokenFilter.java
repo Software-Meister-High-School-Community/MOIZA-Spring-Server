@@ -4,7 +4,6 @@ import com.example.moizaspringserver.global.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -19,20 +18,15 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String jwtToken = this.parseJwtToken(request);
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
 
-        Authentication authentication = jwtTokenProvider.validation(jwtToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
+        String bearer = jwtTokenProvider.resolveToken(request);
+        if (bearer != null) {
+            Authentication authentication = jwtTokenProvider.authentication(bearer);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
         filterChain.doFilter(request, response);
-    }
-
-    private String parseJwtToken(HttpServletRequest req) {
-        String token = req.getHeader("Authorization");
-        if(StringUtils.isEmpty(token) || !token.startsWith("Bearer ")) return null;
-
-        return token.split("Bearer ")[1];
     }
 
 }
