@@ -89,4 +89,9 @@ public class User extends BaseTimeIdEntity {
         this.appDeviceToken = appDeviceToken;
         this.webDeviceToken = webDeviceToken;
     }
+
+    public void setDeviceToken(String appDeviceToken, String webDeviceToken) {
+        this.appDeviceToken = appDeviceToken;
+        this.webDeviceToken = webDeviceToken;
+    }
 }
