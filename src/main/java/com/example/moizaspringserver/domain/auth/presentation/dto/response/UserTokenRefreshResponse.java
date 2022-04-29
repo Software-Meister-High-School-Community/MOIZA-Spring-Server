@@ -14,7 +14,7 @@ public class UserTokenRefreshResponse {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private final LocalDateTime expiredAt;
-    
+
     private final String refreshToken;
 
 }

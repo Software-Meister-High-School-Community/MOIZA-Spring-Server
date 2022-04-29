@@ -29,8 +29,8 @@ public class TokenRefreshService {
         String accessToken = jwtTokenProvider.generateAccessToken(redisRefreshToken.getUserId());
         return UserTokenRefreshResponse.builder()
                 .accessToken(accessToken)
-                .refreshToken(newRefreshToken)
                 .expiredAt(jwtTokenProvider.getExpiredTime())
+                .refreshToken(newRefreshToken)
                 .build();
     }
 }
