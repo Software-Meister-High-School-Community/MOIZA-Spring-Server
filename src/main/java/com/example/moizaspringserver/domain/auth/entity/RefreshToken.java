@@ -15,7 +15,7 @@ import org.springframework.data.redis.core.index.Indexed;
 public class RefreshToken {
 
 	@Id
-	private String email;
+	private String accountId;
 
 	@Indexed
 	private String refreshToken;
@@ -24,15 +24,15 @@ public class RefreshToken {
 	private Long timeToLive;
 
 	@Builder
-	public RefreshToken(String email, String refreshToken) {
-		this.email = email;
+	public RefreshToken(String accountId, String refreshToken) {
+		this.accountId = accountId;
 		this.refreshToken = refreshToken;
 		this.timeToLive = 3600L * 2;
 	}
 
 	public void updateRefreshToken(String refreshToken, Long timeToLive) {
 		this.refreshToken = refreshToken;
-		this.timeToLive = 3600L * 2;
+		this.timeToLive = timeToLive;
 	}
 
 }

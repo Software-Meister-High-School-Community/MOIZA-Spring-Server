@@ -23,10 +23,10 @@ public class TokenRefreshService {
         RefreshToken redisRefreshToken = refreshTokenRepository.findByRefreshToken(jwtTokenProvider.parseToken(refreshToken))
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
 
-        String newRefreshToken = jwtTokenProvider.generateRefreshToken(redisRefreshToken.getEmail());
+        String newRefreshToken = jwtTokenProvider.generateRefreshToken(redisRefreshToken.getAccountId());
         redisRefreshToken.updateRefreshToken(newRefreshToken, jwtProperties.getRefreshExp());
 
-        String accessToken = jwtTokenProvider.generateAccessToken(redisRefreshToken.getEmail());
+        String accessToken = jwtTokenProvider.generateAccessToken(redisRefreshToken.getAccountId());
         return UserTokenRefreshResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(newRefreshToken)
