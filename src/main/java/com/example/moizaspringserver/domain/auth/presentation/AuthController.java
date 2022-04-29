@@ -6,14 +6,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping("/auths")
+@RequestMapping("/auth")
 @RestController
 public class AuthController {
 
     private final TokenRefreshService tokenRefreshService;
 
     @PutMapping("/token")
-    public UserTokenRefreshResponse userTokenRefresh(@RequestHeader("x-refresh-Token") String refreshToken) {
+    public UserTokenRefreshResponse userTokenRefresh(@RequestHeader("Refresh-Token") String refreshToken) {
         return tokenRefreshService.execute(refreshToken);
     }
 
