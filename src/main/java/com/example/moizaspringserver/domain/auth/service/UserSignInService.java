@@ -28,7 +28,7 @@ public class UserSignInService {
             throw PasswordMismatchException.EXCEPTION;
         }
 
-        user.setDeviceToken(request.getDeviceToken(), request.getDeviceToken());
+        user.setDeviceToken(request.getWebpDeviceToken(), request.getAppDeviceToken());
 
         String accessToken = jwtTokenProvider.generateAccessToken(user.getAccountId());
         String refreshToken = jwtTokenProvider.generateRefreshToken(user.getAccountId());
