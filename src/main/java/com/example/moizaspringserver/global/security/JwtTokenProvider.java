@@ -5,6 +5,7 @@ import com.example.moizaspringserver.domain.auth.repository.RefreshTokenReposito
 import com.example.moizaspringserver.global.error.security.ExpiredTokenException;
 import com.example.moizaspringserver.global.error.security.InvalidTokenException;
 import com.example.moizaspringserver.global.security.auth.AuthDetailsService;
+import com.example.moizaspringserver.global.security.properties.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

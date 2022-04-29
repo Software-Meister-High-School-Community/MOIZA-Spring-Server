@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.global.security;
+package com.example.moizaspringserver.global.security.properties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,8 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 @ConstructorBinding
 @AllArgsConstructor
 @ConfigurationProperties(prefix = "jwt")
-public class JwtProperties {
+public class
+JwtProperties {
 
     private final String secretKey;
     private final Long accessExp;
