@@ -22,11 +22,15 @@ import javax.validation.constraints.NotNull;
 public class User extends BaseTimeIdEntity {
 
     @NotNull
+    @Length(max = 64)
+    private String email;
+
+    @NotNull
     @Length(max = 50)
     private String accountId;
 
     @NotNull
-    @Length(max = 64)
+    @Length(max = 60)
     private String password;
 
     @NotNull
@@ -68,10 +72,10 @@ public class User extends BaseTimeIdEntity {
     private String webDeviceToken;
 
     @Builder
-    public User(String accountId, String password, String name, String profileImageUrl,
+    public User(String email, String accountId, String password, String name, String profileImageUrl,
                 String profileBackgroundColor, Sex sex, Long birthDay, String introduce,
                 UserType userType, School school, String appDeviceToken, String webDeviceToken) {
-
+        this.email = email;
         this.accountId = accountId;
         this.password = password;
         this.name = name;
