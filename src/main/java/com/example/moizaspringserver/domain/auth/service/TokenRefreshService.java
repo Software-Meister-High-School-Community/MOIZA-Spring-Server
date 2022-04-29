@@ -4,7 +4,7 @@ import com.example.moizaspringserver.domain.auth.entity.RefreshToken;
 import com.example.moizaspringserver.domain.auth.exception.RefreshTokenNotFoundException;
 import com.example.moizaspringserver.domain.auth.presentation.dto.response.UserTokenRefreshResponse;
 import com.example.moizaspringserver.domain.auth.repository.RefreshTokenRepository;
-import com.example.moizaspringserver.global.security.JwtProperties;
+import com.example.moizaspringserver.global.security.properties.JwtProperties;
 import com.example.moizaspringserver.global.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
