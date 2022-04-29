@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Component
@@ -25,6 +26,10 @@ public class JwtTokenProvider {
 
     public String generateAccessToken(String id) {
         return generateToken(id, "access", jwtProperties.getAccessExp());
+    }
+
+    public String generateRefreshToken(String id) {
+        return generateToken(id, "refresh", jwtProperties.getRefreshExp());
     }
 
     public String resolveToken(HttpServletRequest request) {
@@ -73,4 +78,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+    public LocalDateTime getExpiredTime() {
+        return LocalDateTime.now().plusSeconds(jwtProperties.getAccessExp());
+    }
 }
