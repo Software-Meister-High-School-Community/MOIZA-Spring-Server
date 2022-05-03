@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @NoArgsConstructor
@@ -15,10 +16,10 @@ public class UserSignInRequest {
     @NotBlank(message = "password는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     private String password;
 
-    @NotBlank(message = "device_token은 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    @Size(min = 64, max = 64, message = "app_device_token은 64여야 합니다.")
     private String appDeviceToken;
 
-    @NotBlank(message = "web_device_token은 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    @Size(min = 64, max = 64, message = "web_device_token은 64여야 합니다.")
     private String webpDeviceToken;
 
 }
