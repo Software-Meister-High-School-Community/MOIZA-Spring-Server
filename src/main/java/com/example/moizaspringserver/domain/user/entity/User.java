@@ -1,5 +1,7 @@
 package com.example.moizaspringserver.domain.user.entity;
 
+import com.example.moizaspringserver.domain.auth.exception.PasswordMismatchException;
+import com.example.moizaspringserver.domain.auth.presentation.dto.request.UserSignInRequest;
 import com.example.moizaspringserver.domain.user.type.School;
 import com.example.moizaspringserver.domain.user.type.Sex;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
@@ -11,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -65,16 +68,10 @@ public class User extends BaseTimeIdEntity {
     @Enumerated(EnumType.STRING)
     private School school;
 
-    @Length(max = 64)
-    private String appDeviceToken;
-
-    @Length(max = 64)
-    private String webDeviceToken;
-
     @Builder
     public User(String email, String accountId, String password, String name, String profileImageUrl,
                 String profileBackgroundColor, Sex sex, Long birthDay, String introduce,
-                UserType userType, School school, String appDeviceToken, String webDeviceToken) {
+                UserType userType, School school) {
         this.email = email;
         this.accountId = accountId;
         this.password = password;
@@ -86,12 +83,6 @@ public class User extends BaseTimeIdEntity {
         this.introduce = introduce;
         this.userType = userType;
         this.school = school;
-        this.appDeviceToken = appDeviceToken;
-        this.webDeviceToken = webDeviceToken;
     }
 
-    public void setDeviceToken(String appDeviceToken, String webDeviceToken) {
-        this.appDeviceToken = appDeviceToken;
-        this.webDeviceToken = webDeviceToken;
-    }
 }
