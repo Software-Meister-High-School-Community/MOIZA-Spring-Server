@@ -1,7 +1,6 @@
 package com.example.moizaspringserver.global.security;
 
 import com.example.moizaspringserver.global.filter.JwtTokenFilter;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // auth
                 .antMatchers(HttpMethod.POST,"/auth/tokens").permitAll()
-                .antMatchers(HttpMethod.PUT, "/auth/tokens").authenticated()
+                .antMatchers(HttpMethod.PUT, "/auth/tokens").permitAll()
 
                 .anyRequest().denyAll()
 
