@@ -1,7 +1,5 @@
 package com.example.moizaspringserver.domain.user.entity;
 
-import com.example.moizaspringserver.domain.auth.exception.PasswordMismatchException;
-import com.example.moizaspringserver.domain.auth.presentation.dto.request.UserSignInRequest;
 import com.example.moizaspringserver.domain.user.type.School;
 import com.example.moizaspringserver.domain.user.type.Sex;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
@@ -13,9 +11,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Getter

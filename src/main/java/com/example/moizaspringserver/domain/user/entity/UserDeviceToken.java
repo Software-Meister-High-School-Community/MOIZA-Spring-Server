@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -20,11 +19,9 @@ public class UserDeviceToken extends BaseIdEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @NotNull
     @Length(max = 64)
     private String appDeviceToken;
 
-    @NotNull
     @Length(max = 64)
     private String webDeviceToken;
 
@@ -35,8 +32,4 @@ public class UserDeviceToken extends BaseIdEntity {
         this.webDeviceToken = webDeviceToken;
     }
 
-    public void setDeviceToken(String appDeviceToken, String webDeviceToken) {
-        this.appDeviceToken = appDeviceToken;
-        this.webDeviceToken = webDeviceToken;
-    }
 }
