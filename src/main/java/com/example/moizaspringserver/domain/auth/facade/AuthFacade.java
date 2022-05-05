@@ -1,6 +1,7 @@
-package com.example.moizaspringserver.domain.auth.presentation.dto.request;
+package com.example.moizaspringserver.domain.auth.facade;
 
 import com.example.moizaspringserver.domain.auth.exception.PasswordMismatchException;
+import com.example.moizaspringserver.domain.auth.presentation.dto.request.UserSignInRequest;
 import com.example.moizaspringserver.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class UserSignInInformation {
+public class AuthFacade {
 
     private final PasswordEncoder passwordEncoder;
 
