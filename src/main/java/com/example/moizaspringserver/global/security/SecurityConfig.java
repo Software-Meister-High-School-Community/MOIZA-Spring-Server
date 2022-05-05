@@ -1,10 +1,10 @@
 package com.example.moizaspringserver.global.security;
 
 import com.example.moizaspringserver.global.filter.JwtTokenFilter;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -41,10 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
-                .and()
-                .authorizeRequests()
-                .antMatchers("/auth/**").permitAll().and()
+                // auth
+                .antMatchers(HttpMethod.POST,"/auth/tokens").permitAll()
+                .antMatchers(HttpMethod.PUT, "/auth/tokens").permitAll()
 
+                .anyRequest().denyAll()
+
+                .and()
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class).authorizeRequests()
                 .anyRequest().authenticated();
     }

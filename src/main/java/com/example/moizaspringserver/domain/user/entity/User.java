@@ -12,7 +12,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -65,16 +68,10 @@ public class User extends BaseTimeIdEntity {
     @Enumerated(EnumType.STRING)
     private School school;
 
-    @Length(max = 64)
-    private String appDeviceToken;
-
-    @Length(max = 64)
-    private String webDeviceToken;
-
     @Builder
     public User(String email, String accountId, String password, String name, String profileImageUrl,
                 String profileBackgroundColor, Sex sex, Long birthDay, String introduce,
-                UserType userType, School school, String appDeviceToken, String webDeviceToken) {
+                UserType userType, School school) {
         this.email = email;
         this.accountId = accountId;
         this.password = password;
@@ -86,7 +83,6 @@ public class User extends BaseTimeIdEntity {
         this.introduce = introduce;
         this.userType = userType;
         this.school = school;
-        this.appDeviceToken = appDeviceToken;
-        this.webDeviceToken = webDeviceToken;
     }
+
 }

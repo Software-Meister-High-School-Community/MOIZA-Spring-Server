@@ -13,7 +13,9 @@ public enum ErrorCode {
     INVALID_TOKEN(401, "Invalid Token"),
     REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found"),
 
-    USER_NOT_FOUND(404, "User Not Found");
+    USER_NOT_FOUND(404, "User Not Found"),
+
+    PASSWORD_MISMATCH(401, "Password Mismatch");
 
     private final int status;
     private final String message;

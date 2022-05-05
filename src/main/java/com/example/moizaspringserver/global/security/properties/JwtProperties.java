@@ -1,4 +1,4 @@
-package com.example.moizaspringserver.global.security;
+package com.example.moizaspringserver.global.security.properties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
