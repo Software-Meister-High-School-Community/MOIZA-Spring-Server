@@ -15,7 +15,11 @@ public enum ErrorCode {
 
     USER_NOT_FOUND(404, "User Not Found"),
 
-    PASSWORD_MISMATCH(401, "Password Mismatch");
+    PASSWORD_MISMATCH(401, "Password Mismatch"),
+
+    EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
+    EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified");
+
 
     private final int status;
     private final String message;
