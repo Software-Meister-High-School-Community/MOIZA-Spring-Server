@@ -14,6 +14,7 @@ public enum ErrorCode {
     REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found"),
 
     USER_NOT_FOUND(404, "User Not Found"),
+    USER_ALREADY_EXISTS(409, "User Already Exists"),
 
     PASSWORD_MISMATCH(401, "Password Mismatch"),
 
