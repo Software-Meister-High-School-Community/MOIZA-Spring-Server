@@ -45,10 +45,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/auth/tokens").permitAll()
                 .antMatchers(HttpMethod.PUT, "/auth/tokens").permitAll()
 
+                //user
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
+
                 .anyRequest().denyAll()
 
                 .and()
-                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class).authorizeRequests()
-                .anyRequest().authenticated();
+                .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
 }
