@@ -19,7 +19,8 @@ public enum ErrorCode {
     PASSWORD_MISMATCH(401, "Password Mismatch"),
 
     EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
-    EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified");
+    EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
+    EMAIL_CODE_REQUEST_OVER_LIMIT(429, "Email Code Request Over Limit");
 
 
     private final int status;
