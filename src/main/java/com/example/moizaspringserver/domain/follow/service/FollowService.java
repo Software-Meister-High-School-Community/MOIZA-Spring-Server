@@ -23,7 +23,7 @@ public class FollowService {
     @Transactional(readOnly = true)
     public GetAllFollowingResponse getAllFollowing(Integer userId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> { throw UserNotFoundException.EXCEPTION; });
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         List<Follow> followings = followRepository.findAllByUser(user);
         List<FollowingInfo> followingList = followings.stream().map(follow -> {
