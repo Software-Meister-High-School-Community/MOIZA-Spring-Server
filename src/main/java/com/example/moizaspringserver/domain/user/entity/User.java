@@ -5,7 +5,6 @@ import com.example.moizaspringserver.domain.user.type.Sex;
 import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
 import com.example.moizaspringserver.global.enums.UserType;
 import com.example.moizaspringserver.infrastructure.s3.DefaultImage;
-import javax.persistence.Column;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,10 +13,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -74,7 +70,7 @@ public class User extends BaseTimeIdEntity {
 
     @Builder
     public User(String email, String accountId, String password, String name,
-        Sex sex, Long birthDay, String introduce, UserType userType, School school) {
+                Sex sex, Long birthDay, String introduce, UserType userType, School school) {
         this.email = email;
         this.accountId = accountId;
         this.password = password;
@@ -84,6 +80,13 @@ public class User extends BaseTimeIdEntity {
         this.introduce = introduce;
         this.userType = userType;
         this.school = school;
+    }
+
+    public void updateInfo(String profileImageUrl, String profileBackgroundColor,
+                               String introduce) {
+        this.profileImageUrl = profileImageUrl;
+        this.profileBackgroundColor = profileBackgroundColor;
+        this.introduce = introduce;
     }
 
 }
