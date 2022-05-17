@@ -9,9 +9,9 @@ import com.example.moizaspringserver.domain.user.exception.UserNotFoundException
 import com.example.moizaspringserver.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,8 +20,10 @@ public class FollowService {
     private final UserRepository userRepository;
     private final FollowRepository followRepository;
 
+    @Transactional(readOnly = true)
     public GetAllFollowingResponse getAllFollowing(Integer userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> { throw UserNotFoundException.EXCEPTION; });
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> { throw UserNotFoundException.EXCEPTION; });
 
         List<Follow> followings = followRepository.findAllByUser(user);
         List<FollowingInfo> followingList = followings.stream().map(follow -> {

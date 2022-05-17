@@ -8,13 +8,13 @@ import lombok.Getter;
 @Getter
 @Builder
 public class FollowingInfo {
-    private Integer userId;
+    private final Integer userId;
 
-    private String name;
+    private final String name;
 
-    private String profileImageUrl;
+    private final String profileImageUrl;
 
-    private UserType userScope;
+    private final UserType userScope;
 
-    private School school;
+    private final School school;
 }

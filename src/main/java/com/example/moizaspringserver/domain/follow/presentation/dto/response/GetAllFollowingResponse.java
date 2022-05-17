@@ -8,5 +8,5 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class GetAllFollowingResponse {
-    private List<FollowingInfo> followingUserList;
+    private final List<FollowingInfo> followingUserList;
 }
