@@ -25,7 +25,7 @@ public class FollowService {
         if(user.isEmpty()) throw UserNotFoundException.EXCEPTION;
 
         final List<Follow> followings = followRepository.findAllByUser(user.get());
-        List<FollowingInfo> followingList = followings.stream().map((follow) -> {
+        List<FollowingInfo> followingList = followings.stream().map(follow -> {
             User targetUser = follow.getTargetUser();
             return FollowingInfo.builder()
                     .userId(targetUser.getId())
