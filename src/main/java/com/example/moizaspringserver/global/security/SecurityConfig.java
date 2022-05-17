@@ -45,8 +45,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/auth/tokens").permitAll()
                 .antMatchers(HttpMethod.PUT, "/auth/tokens").permitAll()
 
-                //user
+                // user
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
+
+                // feeds
+                .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").hasAnyAuthority("STUDENT", "GRADUATE", "ADMIN")
 
                 .anyRequest().denyAll()
 
