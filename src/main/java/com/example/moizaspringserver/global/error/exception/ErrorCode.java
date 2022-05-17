@@ -12,6 +12,8 @@ public enum ErrorCode {
     EXPIRED_TOKEN(401, "Expired Token"),
     INVALID_TOKEN(401, "Invalid Token"),
     REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found"),
+    INVALID_ROLE(401, "Invalid Role"),
+    CREDENTIALS_NOT_FOUND(404, "Credentials Not Found"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     USER_ALREADY_EXISTS(409, "User Already Exists"),
@@ -19,7 +21,9 @@ public enum ErrorCode {
     PASSWORD_MISMATCH(401, "Password Mismatch"),
 
     EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
-    EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified");
+    EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
+
+    FEED_NOT_FOUND(404, "Feed Not Found");
 
 
     private final int status;
