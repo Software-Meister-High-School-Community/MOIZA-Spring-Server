@@ -27,12 +27,16 @@ public class EmailCode {
 	private boolean isVerify;
 
 	@Builder
-	public EmailCode(String email, String authCode,
-		Type type, Long timeToLive) {
+	public EmailCode(String email, String authCode, Type type) {
 		this.email = email;
 		this.authCode = authCode;
 		this.type = type;
-		this.timeToLive = timeToLive;
+		this.timeToLive = 180000L;
 		this.isVerify = false;
+	}
+
+	public void updateAuthCode(String authCode) {
+		this.authCode = authCode;
+		this.timeToLive = 180000L;
 	}
 }
