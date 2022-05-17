@@ -25,3 +25,8 @@ jwt:
   refresh-exp: ${JWT_REFRESH_EXP}
   header: ${JWT_HEADER}
   prefix: ${JWT_PREFIX}
+
+aws:
+  access-key : ${SES_ACCESS}
+  secret-key : ${SES_SECRET}
+  ses-source : ${SES_SOURCE}
