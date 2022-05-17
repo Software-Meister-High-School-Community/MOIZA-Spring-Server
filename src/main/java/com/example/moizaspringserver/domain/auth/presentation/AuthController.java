@@ -30,7 +30,7 @@ public class AuthController {
         return userSignInService.execute(request);
     }
 
-    @RequestMapping(value = "/id-validations",method = RequestMethod.HEAD)
+    @RequestMapping(value = "/id-validations", method = RequestMethod.HEAD)
     public void checkAccountIdExists(@RequestBody @Valid CheckAccountIdExistsRequest request) {
         checkAccountIdExistsService.execute(request);
     }
