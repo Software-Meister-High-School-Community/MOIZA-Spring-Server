@@ -21,10 +21,9 @@ public class FollowService {
     private final FollowRepository followRepository;
 
     public GetAllFollowingResponse getAllFollowing(Integer userId) {
-        final Optional<User> user = userRepository.findById(userId);
-        if(user.isEmpty()) throw UserNotFoundException.EXCEPTION;
+        User user = userRepository.findById(userId).orElseThrow(() -> { throw UserNotFoundException.EXCEPTION; });
 
-        final List<Follow> followings = followRepository.findAllByUser(user.get());
+        List<Follow> followings = followRepository.findAllByUser(user);
         List<FollowingInfo> followingList = followings.stream().map(follow -> {
             User targetUser = follow.getTargetUser();
             return FollowingInfo.builder()
