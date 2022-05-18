@@ -25,7 +25,7 @@ public class FollowService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
-        List<Follow> followings = followRepository.findAllByUser(user);
+        List<Follow> followings = followRepository.findAllByUserWithTarget(user);
         List<FollowingInfo> followingList = followings.stream().map(follow -> {
             User targetUser = follow.getTargetUser();
             return FollowingInfo.builder()
