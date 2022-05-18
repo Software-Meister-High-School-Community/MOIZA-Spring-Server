@@ -39,6 +39,8 @@ dependencies {
 	implementation 'com.amazonaws:aws-java-sdk-ses:1.11.852'
 
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+	implementation 'org.apache.poi:poi:3.16'
+	implementation 'org.apache.poi:poi-ooxml:3.16'
 }
 
 jar {
