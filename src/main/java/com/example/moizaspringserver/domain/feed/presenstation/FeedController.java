@@ -14,7 +14,7 @@ public class FeedController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
-    public void deleteFeed(@PathVariable(name = "feed-id") Integer feedId) {
+    public void deleteFeed(@PathVariable("feed-id") Integer feedId) {
         deleteFeedService.execute(feedId);
     }
 
