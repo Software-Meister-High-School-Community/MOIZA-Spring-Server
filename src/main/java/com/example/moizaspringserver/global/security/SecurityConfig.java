@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
 
                 // feeds
-                .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").authenticated()
 
                 .anyRequest().denyAll()
 
