@@ -1,9 +1,6 @@
 package com.example.moizaspringserver.domain.report.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -11,6 +8,7 @@ import java.io.Serializable;
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
 public class UserReportId implements Serializable {
 
     private Integer user;
