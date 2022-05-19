@@ -21,7 +21,8 @@ public enum ErrorCode {
 
     EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
     EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
-    EMAIL_CODE_REQUEST_OVER_LIMIT(429, "Email Code Request Over Limit");
+    EMAIL_CODE_REQUEST_OVER_LIMIT(429, "Email Code Request Over Limit"),
+    AUTH_CODE_ALREADY_VERIFIED(409, "Auth Code Already Verified");
 
 
     private final int status;
