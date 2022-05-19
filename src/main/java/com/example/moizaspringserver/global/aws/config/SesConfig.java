@@ -23,7 +23,7 @@ public class SesConfig {
 
 		return AmazonSimpleEmailServiceAsyncClient.asyncBuilder()
 			.withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials))
-			.withRegion(Regions.AP_NORTHEAST_2)
+			.withRegion(awsProperties.getAwsRegions())
 			.build();
 	}
 }

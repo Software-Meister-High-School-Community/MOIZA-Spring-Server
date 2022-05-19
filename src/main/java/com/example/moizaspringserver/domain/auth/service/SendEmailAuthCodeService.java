@@ -51,6 +51,7 @@ public class SendEmailAuthCodeService {
 		return new SendEmailAuthCodeResponse(email);
 	}
 
+	@Transactional(readOnly = true)
 	private String getEmail(Type type, String value) {
 		if (Type.PASSWORD.equals(type)) {
 			return userRepository.findByAccountId(value)

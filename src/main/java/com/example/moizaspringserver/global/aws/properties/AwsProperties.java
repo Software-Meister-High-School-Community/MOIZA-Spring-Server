@@ -14,4 +14,5 @@ public class AwsProperties {
 	private final String accessKey;
 	private final String secretKey;
 	private final String sesSource;
+	private final String awsRegions;
 }
