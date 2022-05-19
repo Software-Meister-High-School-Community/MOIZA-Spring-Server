@@ -30,4 +30,4 @@ aws:
   access-key : ${SES_ACCESS}
   secret-key : ${SES_SECRET}
   ses-source : ${SES_SOURCE}
-  aws-regions : ${AWS_REGIONS:AP_NORTHEAST_2}
+  aws-regions : ${AWS_REGIONS:ap-northeast-2}
