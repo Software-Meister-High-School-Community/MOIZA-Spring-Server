@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // auth
                 .antMatchers(HttpMethod.POST,"/auth/tokens").permitAll()
                 .antMatchers(HttpMethod.PUT, "/auth/tokens").permitAll()
+                .antMatchers(HttpMethod.HEAD, "/auth/id-validations").permitAll()
 
                 //user
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
