@@ -2,14 +2,13 @@ package com.example.moizaspringserver.domain.like.entity;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
+@EqualsAndHashCode
 public class FeedLikeId implements Serializable {
 
 	private Integer user;
