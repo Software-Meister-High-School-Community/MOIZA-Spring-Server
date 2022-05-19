@@ -2,30 +2,44 @@ package com.example.moizaspringserver.domain.user.presentation;
 
 import com.example.moizaspringserver.domain.user.presentation.dto.request.UpdateMyInfoRequest;
 import com.example.moizaspringserver.domain.user.presentation.dto.request.UserSingUpRequest;
+import com.example.moizaspringserver.domain.user.presentation.dto.response.UserListResponse;
+import com.example.moizaspringserver.domain.user.service.QueryUserListService;
 import com.example.moizaspringserver.domain.user.service.UpdateMyInfoService;
 import com.example.moizaspringserver.domain.user.service.UserSingUpService;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RequestMapping("/users")
 @RestController
 public class UserController {
 
-	private final UserSingUpService userSingUpService;
-	private final UpdateMyInfoService updateMyInfoService;
+    private static final Integer PAGE_SIZE = 6;
 
-	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping
-	public void singUp(@RequestBody @Valid UserSingUpRequest userSingUpRequest) {
-		userSingUpService.execute(userSingUpRequest);
-	}
+    private final UserSingUpService userSingUpService;
+    private final UpdateMyInfoService updateMyInfoService;
+    private final QueryUserListService queryUserListService;
 
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PatchMapping
-	public void updateMyInfo(@RequestBody @Valid UpdateMyInfoRequest request) {
-		updateMyInfoService.execute(request);
-	}
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public void singUp(@RequestBody @Valid UserSingUpRequest userSingUpRequest) {
+        userSingUpService.execute(userSingUpRequest);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping
+    public void updateMyInfo(@RequestBody @Valid UpdateMyInfoRequest request) {
+        updateMyInfoService.execute(request);
+    }
+
+    @GetMapping("/searching")
+    public UserListResponse searchUser(@RequestParam String name,
+                                       @RequestParam Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, PAGE_SIZE);
+        return queryUserListService.execute(name, pageRequest);
+    }
 }
