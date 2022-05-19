@@ -30,7 +30,7 @@ public class SendEmailAuthCodeService {
 
 		final String email;
 
-		if (request.getType().equals(Type.PASSWORD)) {
+		if (Type.PASSWORD.equals(request.getType())) {
 			email = userRepository.findByAccountId(request.getValue())
 				.orElseThrow(() -> UserNotFoundException.EXCEPTION)
 				.getEmail();
