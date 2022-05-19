@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class SendEmailCodeResponse {
+public class SendEmailAuthCodeResponse {
 
 	private final String email;
 }

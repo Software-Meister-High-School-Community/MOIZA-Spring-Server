@@ -4,7 +4,7 @@ import com.example.moizaspringserver.domain.auth.entity.EmailCode;
 import com.example.moizaspringserver.domain.auth.entity.EmailCodeLimit;
 import com.example.moizaspringserver.domain.auth.exception.EmailCodeRequestOverLimitException;
 import com.example.moizaspringserver.domain.auth.presentation.dto.request.SendEmailAuthCodeRequest;
-import com.example.moizaspringserver.domain.auth.presentation.dto.response.SendEmailCodeResponse;
+import com.example.moizaspringserver.domain.auth.presentation.dto.response.SendEmailAuthCodeResponse;
 import com.example.moizaspringserver.domain.auth.repository.EmailCodeLimitRepository;
 import com.example.moizaspringserver.domain.auth.repository.EmailCodeRepository;
 import com.example.moizaspringserver.domain.auth.type.Type;
@@ -26,7 +26,7 @@ public class SendEmailAuthCodeService {
 	private final SesUtil sesUtil;
 
 	@Transactional
-	public SendEmailCodeResponse execute(SendEmailAuthCodeRequest request) {
+	public SendEmailAuthCodeResponse execute(SendEmailAuthCodeRequest request) {
 
 		final String email;
 
@@ -49,7 +49,7 @@ public class SendEmailAuthCodeService {
 
 		sesUtil.sendMail(email, authCode);
 
-		return new SendEmailCodeResponse(email);
+		return new SendEmailAuthCodeResponse(email);
 	}
 
 	private void isOverLimit(String email, Type type) {
