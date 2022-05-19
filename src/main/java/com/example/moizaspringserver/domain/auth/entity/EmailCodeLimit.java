@@ -26,12 +26,12 @@ public class EmailCodeLimit {
 	public EmailCodeLimit(String email, Type type) {
 		this.email = email;
 		this.type = type;
-		this.timeToLive = 3600 * 24 * 1000L;
+		this.timeToLive = 3600 * 24L;
 		this.count = 1;
 	}
 
 	public EmailCodeLimit addCount() {
-		this.count ++;
+		this.count++;
 		return this;
 	}
 }

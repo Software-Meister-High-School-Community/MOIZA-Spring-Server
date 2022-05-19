@@ -37,6 +37,6 @@ public class EmailCode {
 
 	public void updateAuthCode(String authCode) {
 		this.authCode = authCode;
-		this.timeToLive = 180000L;
+		this.timeToLive = 180L;
 	}
 }
