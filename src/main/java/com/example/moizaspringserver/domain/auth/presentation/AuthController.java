@@ -1,9 +1,11 @@
 package com.example.moizaspringserver.domain.auth.presentation;
 
+import com.example.moizaspringserver.domain.auth.presentation.dto.request.CheckAccountIdExistsRequest;
 import com.example.moizaspringserver.domain.auth.presentation.dto.request.SendEmailAuthCodeRequest;
 import com.example.moizaspringserver.domain.auth.presentation.dto.request.UserSignInRequest;
 import com.example.moizaspringserver.domain.auth.presentation.dto.response.SendEmailAuthCodeResponse;
 import com.example.moizaspringserver.domain.auth.presentation.dto.response.UserTokenRefreshResponse;
+import com.example.moizaspringserver.domain.auth.service.CheckAccountIdExistsService;
 import com.example.moizaspringserver.domain.auth.service.SendEmailAuthCodeService;
 import com.example.moizaspringserver.domain.auth.service.TokenRefreshService;
 import com.example.moizaspringserver.domain.auth.service.UserSignInService;
@@ -20,6 +22,7 @@ public class AuthController {
 
     private final TokenRefreshService tokenRefreshService;
     private final UserSignInService userSignInService;
+    private final CheckAccountIdExistsService checkAccountIdExistsService;
     private final SendEmailAuthCodeService sendEmailAuthCodeService;
 
     @PutMapping("/tokens")
@@ -30,6 +33,11 @@ public class AuthController {
     @PostMapping("/tokens")
     public UserTokenRefreshResponse userSignIn(@RequestBody @Valid UserSignInRequest request) {
         return userSignInService.execute(request);
+    }
+
+    @RequestMapping(value = "/id-validations", method = RequestMethod.HEAD)
+    public void checkAccountIdExists(@RequestBody @Valid CheckAccountIdExistsRequest request) {
+        checkAccountIdExistsService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
