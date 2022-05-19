@@ -3,7 +3,7 @@ package com.example.moizaspringserver.domain.user.presentation;
 import com.example.moizaspringserver.domain.user.presentation.dto.request.UpdateMyInfoRequest;
 import com.example.moizaspringserver.domain.user.presentation.dto.request.UserSingUpRequest;
 import com.example.moizaspringserver.domain.user.presentation.dto.response.UserListResponse;
-import com.example.moizaspringserver.domain.user.service.QueryUserListService;
+import com.example.moizaspringserver.domain.user.service.SearchUserService;
 import com.example.moizaspringserver.domain.user.service.UpdateMyInfoService;
 import com.example.moizaspringserver.domain.user.service.UserSingUpService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class UserController {
 
     private final UserSingUpService userSingUpService;
     private final UpdateMyInfoService updateMyInfoService;
-    private final QueryUserListService queryUserListService;
+    private final SearchUserService searchUserService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -40,6 +40,6 @@ public class UserController {
     public UserListResponse searchUser(@RequestParam String name,
                                        @RequestParam Integer page) {
         PageRequest pageRequest = PageRequest.of(page, PAGE_SIZE);
-        return queryUserListService.execute(name, pageRequest);
+        return searchUserService.execute(name, pageRequest);
     }
 }

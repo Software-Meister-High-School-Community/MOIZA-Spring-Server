@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class QueryUserListService {
+public class SearchUserService {
 
     private final UserRepository userRepository;
 
     @Transactional(readOnly = true)
     public UserListResponse execute(String name, Pageable pageable) {
-        Page<User> pagingUsers = userRepository.findAllByName(name, pageable);
+        Page<User> pagingUsers = userRepository.findAllByNameContaining(name, pageable);
 
         int totalPage = pagingUsers.getTotalPages();
         List<User> content = pagingUsers.getContent();
