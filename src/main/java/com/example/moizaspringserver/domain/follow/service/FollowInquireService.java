@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class FollowService {
+public class FollowInquireService {
     private final UserRepository userRepository;
     private final FollowRepository followRepository;
 
