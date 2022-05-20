@@ -12,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Service
 public class FollowEstablishService {
@@ -22,7 +20,7 @@ public class FollowEstablishService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void newFollow(Integer userIdToFollow) {
+    public void addFollow(Integer userIdToFollow) {
         User currentUser = userFacade.queryCurrentUser();
         User targetUser = userRepository.findById(userIdToFollow)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
@@ -30,7 +28,7 @@ public class FollowEstablishService {
         boolean isAlreadyExists = followRepository
                 .findByUserAndTargetUser(currentUser, targetUser)
                 .isPresent();
-        if(isAlreadyExists) throw FollowAlreadyExistsException.EXCEPTION;
+        if(isAlreadyExists) { throw FollowAlreadyExistsException.EXCEPTION; }
 
         FollowId followId = FollowId.builder()
                 .user(currentUser.getId())
@@ -38,8 +36,6 @@ public class FollowEstablishService {
                 .build();
         Follow follow = Follow.builder()
                 .id(followId)
-                .user(currentUser)
-                .targetUser(targetUser)
                 .build();
 
         followRepository.save(follow);
