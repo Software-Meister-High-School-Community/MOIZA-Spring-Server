@@ -24,7 +24,19 @@ public enum ErrorCode {
     EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
     EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
 
-    FEED_NOT_FOUND(404, "Feed Not Found");
+    FEED_NOT_FOUND(404, "Feed Not Found"),
+    LOCAL_FEED_NOT_FOUND(404, "Local Feed Not Found"),
+    PUBLIC_FEED_NOT_FOUND(404, "Public Feed Not Found"),
+    FEED_ATTACHMENT_FILE_NOT_FOUND(404, "Feed Attachment File Not Found"),
+
+    FEED_LIKE_NOT_FOUND(404, "Feed Like Not Found"),
+
+    FEED_CATEGORY_NOT_FOUND(404, "Feed Category Not Found"),
+
+    COMMENT_FOT_FOUND(404, "Comment Not Found"),
+    COMMNET_ATTACHMENT_FILE_NOT_FOUND(404, "Comment Not Found"),
+
+    FEED_REPORT_NOT_FOUND(404, "Feed Report Not Found");
 
 
     private final int status;
