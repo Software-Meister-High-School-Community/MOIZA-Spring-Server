@@ -51,7 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PATCH, "/users").authenticated()
 
                 // follow
-                .antMatchers("/follow/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/follow/*").authenticated()
+                .antMatchers(HttpMethod.GET, "/following/*").authenticated()
 
                 .anyRequest().denyAll()
 
