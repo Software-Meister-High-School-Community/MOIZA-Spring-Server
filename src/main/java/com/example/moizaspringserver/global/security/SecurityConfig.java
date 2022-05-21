@@ -47,10 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.HEAD, "/auth/id-validations").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/email-verifications").permitAll()
 
-                //user
+                // user
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/users").authenticated()
                 .antMatchers(HttpMethod.GET, "/users/searching").authenticated()
+
+                // notice
+                .antMatchers(HttpMethod.DELETE, "/notices/{notice-id}").hasAnyAuthority("ADMIN")
 
                 .anyRequest().denyAll()
 
