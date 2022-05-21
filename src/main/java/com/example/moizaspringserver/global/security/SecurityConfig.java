@@ -45,9 +45,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/auth/tokens").permitAll()
                 .antMatchers(HttpMethod.PUT, "/auth/tokens").permitAll()
 
-                //user
+                // user
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/users").authenticated()
+
+                // notice
+                .antMatchers(HttpMethod.GET, "/notices/{notice-id}").authenticated()
 
                 .anyRequest().denyAll()
 
