@@ -17,7 +17,7 @@ public class AuthFacade {
     private final UserRepository userRepository;
 
     public void passwordMatch(User user, UserSignInRequest request) {
-        if (!passwordEncoder.matches(user.getPassword(), request.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw PasswordMismatchException.EXCEPTION;
         }
 

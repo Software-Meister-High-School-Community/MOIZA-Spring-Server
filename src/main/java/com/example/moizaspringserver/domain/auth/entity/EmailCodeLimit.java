@@ -7,36 +7,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.TimeToLive;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RedisHash
-public class EmailCode {
+public class EmailCodeLimit {
 
 	@Id
 	private String email;
 
-	private String authCode;
-
 	private Type type;
 
-	@TimeToLive
-	private Long timeToLive;
+	private long timeToLive;
 
-	private boolean isVerify;
+	private int count;
 
 	@Builder
-	public EmailCode(String email, String authCode, Type type) {
+	public EmailCodeLimit(String email, Type type) {
 		this.email = email;
-		this.authCode = authCode;
 		this.type = type;
-		this.timeToLive = 180000L;
-		this.isVerify = false;
+		this.timeToLive = 3600 * 2L;
+		this.count = 1;
 	}
 
-	public void updateAuthCode(String authCode) {
-		this.authCode = authCode;
-		this.timeToLive = 180L;
+	public EmailCodeLimit addCount() {
+		this.count++;
+		return this;
 	}
 }
