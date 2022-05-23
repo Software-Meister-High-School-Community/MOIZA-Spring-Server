@@ -9,6 +9,7 @@ import com.example.moizaspringserver.domain.user.exception.UserNotFoundException
 import com.example.moizaspringserver.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +21,8 @@ public class FollowerQueryService {
     private final UserRepository userRepository;
     private final FollowRepository followRepository;
 
-    public GetAllFollowerResponse getAllFollower(Integer userId) {
+    @Transactional(readOnly = true)
+    public GetAllFollowerResponse execute(Integer userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 

@@ -31,6 +31,6 @@ public class FollowController {
 
     @GetMapping("/follower/{user-id}")
     public GetAllFollowerResponse getAllFollower(@PathVariable("user-id") Integer userId) {
-        return followerQueryService.getAllFollower(userId);
+        return followerQueryService.execute(userId);
     }
 }
