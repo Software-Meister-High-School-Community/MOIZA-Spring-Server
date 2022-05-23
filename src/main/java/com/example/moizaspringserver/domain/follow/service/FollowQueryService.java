@@ -1,6 +1,7 @@
 package com.example.moizaspringserver.domain.follow.service;
 
 import com.example.moizaspringserver.domain.follow.entity.Follow;
+import com.example.moizaspringserver.domain.follow.presentation.dto.response.CommonFollowInfo;
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.FollowingInfo;
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowingResponse;
 import com.example.moizaspringserver.domain.follow.repository.FollowRepository;

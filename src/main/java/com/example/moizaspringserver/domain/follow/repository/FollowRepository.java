@@ -16,5 +16,7 @@ public interface FollowRepository extends CrudRepository<Follow, FollowId> {
     @Query("select follow from Follow follow join fetch follow.targetUser where follow.user=:user")
     List<Follow> findAllByUserWithTarget(@Param("user") User user);
 
+    @Query("select follow from Follow follow join fetch follow.user where follow.targetUser=:target")
+    List<Follow> findAllByTargetUserWithUser(@Param("target")  User targetUser);
     Optional<Follow> findByUserAndTargetUser(User user, User targetUser);
 }
