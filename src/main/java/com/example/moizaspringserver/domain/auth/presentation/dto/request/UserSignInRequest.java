@@ -20,6 +20,6 @@ public class UserSignInRequest {
     private String appDeviceToken;
 
     @Size(min = 64, max = 64, message = "web_device_token은 64자여야 합니다.")
-    private String webpDeviceToken;
+    private String webDeviceToken;
 
 }

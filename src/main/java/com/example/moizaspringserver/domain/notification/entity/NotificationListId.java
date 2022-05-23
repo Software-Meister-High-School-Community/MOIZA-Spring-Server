@@ -1,10 +1,7 @@
 package com.example.moizaspringserver.domain.notification.entity;
 
 import com.example.moizaspringserver.domain.user.entity.User;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
@@ -15,6 +12,7 @@ import java.io.Serializable;
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
 public class NotificationListId implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,10 +1,16 @@
+server:
+  shutdown: graceful
+
 spring:
+  lifecycle:
+    timeout-per-shutdown-phase: "60s"
+
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
   datasource:
     url: jdbc:mysql://${DB_URL}:3306/${DB_NAME}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
@@ -25,3 +31,9 @@ jwt:
   refresh-exp: ${JWT_REFRESH_EXP}
   header: ${JWT_HEADER}
   prefix: ${JWT_PREFIX}
+
+aws:
+  access-key : ${SES_ACCESS}
+  secret-key : ${SES_SECRET}
+  ses-source : ${SES_SOURCE}
+  aws-regions : ${AWS_REGIONS:ap-northeast-2}
