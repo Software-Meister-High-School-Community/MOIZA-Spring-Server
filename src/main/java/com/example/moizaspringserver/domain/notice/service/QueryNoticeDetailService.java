@@ -2,8 +2,8 @@ package com.example.moizaspringserver.domain.notice.service;
 
 import com.example.moizaspringserver.domain.notice.entity.Notice;
 import com.example.moizaspringserver.domain.notice.exception.NoticeNotFoundException;
-import com.example.moizaspringserver.domain.notice.presentation.dto.Response.AttachmentFileResponse;
-import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse;
+import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse.NoticeAttachmentFile;
+import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse.NoticeDetail;
 import com.example.moizaspringserver.domain.notice.repository.NoticeAttachmentFileRepository;
 import com.example.moizaspringserver.domain.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,19 +21,19 @@ public class QueryNoticeDetailService {
     private final NoticeAttachmentFileRepository noticeAttachmentFileRepository;
 
     @Transactional(readOnly = true)
-    public NoticeDetailResponse execute(Integer id) {
+    public NoticeDetail execute(Integer id) {
 
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> NoticeNotFoundException.EXCEPTION);
 
-        List<AttachmentFileResponse> attachmentFileList = noticeAttachmentFileRepository.findAllById(id)
+        List<NoticeAttachmentFile> attachmentFileList = noticeAttachmentFileRepository.findAllById(id)
                 .stream()
-                .map(noticeAttachmentFile -> AttachmentFileResponse.builder()
+                .map(noticeAttachmentFile -> NoticeAttachmentFile.builder()
                         .attachmentFileUrl(noticeAttachmentFile.getAttachmentFileUrl())
                         .build())
                 .collect(Collectors.toList());
 
-        return NoticeDetailResponse.builder()
+        return NoticeDetail.builder()
                 .title(notice.getTitle())
                 .content(notice.getContent())
                 .createdAt(notice.getCreatedAt())
