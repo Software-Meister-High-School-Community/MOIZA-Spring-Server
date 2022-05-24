@@ -5,8 +5,7 @@ import com.example.moizaspringserver.domain.follow.presentation.dto.response.Fol
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowerResponse;
 import com.example.moizaspringserver.domain.follow.repository.FollowRepository;
 import com.example.moizaspringserver.domain.user.entity.User;
-import com.example.moizaspringserver.domain.user.exception.UserNotFoundException;
-import com.example.moizaspringserver.domain.user.repository.UserRepository;
+import com.example.moizaspringserver.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class FollowerQueryService {
 
-    private final UserRepository userRepository;
+    private final UserFacade userFacade;
     private final FollowRepository followRepository;
 
     @Transactional(readOnly = true)
     public GetAllFollowerResponse execute(Integer userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+        User user = userFacade.queryUserById(userId);
 
         List<Follow> followerList = followRepository.findAllByTargetUserWithUser(user);
         List<FollowerInfo> followerInfoList = followerList.stream()
