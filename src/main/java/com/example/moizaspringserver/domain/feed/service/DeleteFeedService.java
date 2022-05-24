@@ -1,30 +1,17 @@
 package com.example.moizaspringserver.domain.feed.service;
 
-import com.example.moizaspringserver.domain.category.entity.FeedCategory;
 import com.example.moizaspringserver.domain.category.exception.FeedCategoryNotFoundException;
 import com.example.moizaspringserver.domain.category.repository.FeedCategoryRepository;
 import com.example.moizaspringserver.domain.comment.entity.Comment;
-import com.example.moizaspringserver.domain.comment.entity.CommentAttachmentFile;
-import com.example.moizaspringserver.domain.comment.exception.CommentAttachmentFileNotFoundException;
-import com.example.moizaspringserver.domain.comment.exception.CommentNotFoundException;
-import com.example.moizaspringserver.domain.comment.repository.CommentAttachmentFileRepository;
+import com.example.moizaspringserver.domain.comment.facade.CommentFacade;
 import com.example.moizaspringserver.domain.comment.repository.CommentRepository;
 import com.example.moizaspringserver.domain.feed.entity.Feed;
-import com.example.moizaspringserver.domain.feed.entity.FeedAttachmentFile;
-import com.example.moizaspringserver.domain.feed.entity.LocalFeed;
-import com.example.moizaspringserver.domain.feed.entity.PublicFeed;
-import com.example.moizaspringserver.domain.feed.exception.FeedAttachmentFileNotFoundException;
-import com.example.moizaspringserver.domain.feed.exception.FeedNotFoundException;
-import com.example.moizaspringserver.domain.feed.exception.LocalFeedNotFoundException;
 import com.example.moizaspringserver.domain.feed.exception.PublicFeedNotFoundException;
-import com.example.moizaspringserver.domain.feed.respository.FeedAttachmentFileRepository;
+import com.example.moizaspringserver.domain.feed.facade.FeedFacade;
 import com.example.moizaspringserver.domain.feed.respository.FeedRepository;
-import com.example.moizaspringserver.domain.feed.respository.LocalFeedRepository;
 import com.example.moizaspringserver.domain.feed.respository.PublicFeedRepository;
-import com.example.moizaspringserver.domain.like.entity.FeedLike;
 import com.example.moizaspringserver.domain.like.exception.FeedLikeNotFoundException;
 import com.example.moizaspringserver.domain.like.repository.FeedLikeRepository;
-import com.example.moizaspringserver.domain.report.entity.FeedReport;
 import com.example.moizaspringserver.domain.report.exception.FeedReportNotFoundException;
 import com.example.moizaspringserver.domain.report.repository.FeedReportRepository;
 import com.example.moizaspringserver.domain.user.entity.User;
@@ -38,63 +25,56 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DeleteFeedService {
 
+
     private final UserFacade userFacade;
+    private final CommentFacade commentFacade;
+    private final FeedFacade feedFacade;
     private final FeedRepository feedRepository;
-    private final LocalFeedRepository localFeedRepository;
     private final PublicFeedRepository publicFeedRepository;
     private final FeedLikeRepository feedLikeRepository;
-    private final FeedAttachmentFileRepository feedAttachmentFileRepository;
     private final FeedCategoryRepository feedCategoryRepository;
     private final CommentRepository commentRepository;
-    private final CommentAttachmentFileRepository commentAttachmentFileRepository;
     private final FeedReportRepository feedReportRepository;
-
 
     @Transactional
     public void execute(Integer feedId) {
         User user = userFacade.queryCurrentUser();
 
-        Feed feed = feedRepository.findById(feedId)
-                .orElseThrow(() -> FeedNotFoundException.EXCEPTION);
-
-        LocalFeed localFeed = localFeedRepository.findByFeed(feed)
-                .orElseThrow(() -> LocalFeedNotFoundException.EXCEPTION);
-
-        PublicFeed publicFeed = publicFeedRepository.findByFeed(feed)
-                .orElseThrow(() -> PublicFeedNotFoundException.EXCEPTION);
-
-        FeedLike feedLike = feedLikeRepository.findAllByFeed(feed)
-                .orElseThrow(() -> FeedLikeNotFoundException.EXCEPTION);
-
-        FeedAttachmentFile feedAttachmentFile = feedAttachmentFileRepository.findAllByFeed(feed)
-                .orElseThrow(() -> FeedAttachmentFileNotFoundException.EXCEPTION);
-
-        FeedCategory feedCategory = feedCategoryRepository.findByFeed(feed)
-                .orElseThrow(() -> FeedCategoryNotFoundException.EXCEPTION);
-
-        Comment comment = commentRepository.findAllByFeed(feed)
-                .orElseThrow(() -> CommentNotFoundException.EXCEPTION);
-
-        CommentAttachmentFile commentAttachmentFile = commentAttachmentFileRepository.findAllByComment(comment)
-                .orElseThrow(() -> CommentAttachmentFileNotFoundException.EXCEPTION);
-
-        FeedReport feedReport = feedReportRepository.findAllByFeed(feed)
-                .orElseThrow(() -> FeedReportNotFoundException.EXCEPTION);
-
+        Feed feed = feedFacade.getFeedById(feedId);
 
         if (!user.equals(feed.getUser())) {
             throw InvalidRoleException.EXCEPTION;
         }
 
+        publicFeedRepository.findByFeed(feed)
+                .ifPresentOrElse(publicFeedRepository::delete, () -> {
+                    throw PublicFeedNotFoundException.EXCEPTION;
+                });
+
+        feedLikeRepository.findAllByFeed(feed)
+                .ifPresentOrElse(feedLikeRepository::delete, () -> {
+                    throw FeedLikeNotFoundException.EXCEPTION;
+                });
+
+        feedCategoryRepository.findByFeed(feed)
+                .ifPresentOrElse(feedCategoryRepository::delete, () -> {
+                    throw FeedCategoryNotFoundException.EXCEPTION;
+                });
+
+        feedReportRepository.findAllByFeed(feed)
+                .ifPresentOrElse(feedReportRepository::delete, () -> {
+                    throw FeedReportNotFoundException.EXCEPTION;
+                });
+
+        feedFacade.deleteLocalFeedAllByComment(feed);
+
         feedRepository.delete(feed);
-        localFeedRepository.delete(localFeed);
-        publicFeedRepository.delete(publicFeed);
-        feedLikeRepository.delete(feedLike);
-        feedAttachmentFileRepository.delete(feedAttachmentFile);
-        feedCategoryRepository.delete(feedCategory);
+
+        Comment comment = commentFacade.getAllByFeed(feed);
+
+        commentFacade.deleteAllByComment(comment);
+
         commentRepository.delete(comment);
-        commentAttachmentFileRepository.delete(commentAttachmentFile);
-        feedReportRepository.delete(feedReport);
 
     }
 }
