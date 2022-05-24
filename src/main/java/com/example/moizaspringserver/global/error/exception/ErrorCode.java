@@ -34,7 +34,7 @@ public enum ErrorCode {
     FEED_CATEGORY_NOT_FOUND(404, "Feed Category Not Found"),
 
     COMMENT_FOT_FOUND(404, "Comment Not Found"),
-    COMMNET_ATTACHMENT_FILE_NOT_FOUND(404, "Comment Not Found"),
+    COMMENT_ATTACHMENT_FILE_NOT_FOUND(404, "Comment Not Found"),
 
     FEED_REPORT_NOT_FOUND(404, "Feed Report Not Found"),
   

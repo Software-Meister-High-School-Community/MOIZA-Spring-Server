@@ -9,6 +9,6 @@ public class CommentAttachmentFileNotFoundException extends CustomException {
             new CommentAttachmentFileNotFoundException();
 
     private CommentAttachmentFileNotFoundException() {
-        super(ErrorCode.COMMNET_ATTACHMENT_FILE_NOT_FOUND);
+        super(ErrorCode.COMMENT_ATTACHMENT_FILE_NOT_FOUND);
     }
 }
