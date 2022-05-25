@@ -10,4 +10,6 @@ public interface NoticeAttachmentFileRepository extends CrudRepository<NoticeAtt
 
     Optional<NoticeAttachmentFile> findAllByNotice(Notice notice);
 
+    NoticeAttachmentFile deleteByNotice(Notice notice);
+
 }

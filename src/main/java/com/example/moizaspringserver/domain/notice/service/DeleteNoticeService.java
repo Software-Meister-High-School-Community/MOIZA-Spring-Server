@@ -1,8 +1,6 @@
 package com.example.moizaspringserver.domain.notice.service;
 
 import com.example.moizaspringserver.domain.notice.entity.Notice;
-import com.example.moizaspringserver.domain.notice.entity.NoticeAttachmentFile;
-import com.example.moizaspringserver.domain.notice.exception.NoticeAttachmentFileException;
 import com.example.moizaspringserver.domain.notice.exception.NoticeNotFoundException;
 import com.example.moizaspringserver.domain.notice.repository.NoticeAttachmentFileRepository;
 import com.example.moizaspringserver.domain.notice.repository.NoticeRepository;
@@ -23,12 +21,8 @@ public class DeleteNoticeService {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> NoticeNotFoundException.EXCEPTION);
 
-        NoticeAttachmentFile noticeAttachmentFile = noticeAttachmentFileRepository.findAllByNotice(notice)
-                .orElseThrow(() -> NoticeAttachmentFileException.EXCEPTION);
-
-
         noticeRepository.delete(notice);
-        noticeAttachmentFileRepository.delete(noticeAttachmentFile);
+        noticeAttachmentFileRepository.deleteByNotice(notice);
 
     }
 }
