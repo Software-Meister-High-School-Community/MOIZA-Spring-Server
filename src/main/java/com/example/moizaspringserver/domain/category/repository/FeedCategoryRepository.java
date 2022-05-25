@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface FeedCategoryRepository extends CrudRepository<FeedCategory, FeedCategoryId> {
 
-    FeedCategory deleteByFeed(Feed feed);
+    void deleteByFeed(Feed feed);
 
 }

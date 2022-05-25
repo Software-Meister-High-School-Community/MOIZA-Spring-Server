@@ -57,11 +57,9 @@ public class DeleteFeedService {
 
         feedRepository.delete(feed);
 
-        Comment comment = commentFacade.getAllByFeed(feed);
+        commentAttachmentFileRepository.deleteAllByComment_Feed(feed);
 
-        commentAttachmentFileRepository.deleteByComment(comment);
-
-        commentRepository.delete(comment);
+        commentRepository.deleteAllByFeed(feed);
 
     }
 }

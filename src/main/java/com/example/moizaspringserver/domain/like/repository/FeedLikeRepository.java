@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface FeedLikeRepository extends CrudRepository<FeedLike, FeedLikeId> {
 
-    FeedLike deleteByFeed(Feed feed);
+    void deleteByFeed(Feed feed);
 
 }

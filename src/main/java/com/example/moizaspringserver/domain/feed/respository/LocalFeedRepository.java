@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface LocalFeedRepository extends CrudRepository<LocalFeed, Integer> {
 
-    LocalFeed deleteByFeed(Feed feed);
+    void deleteByFeed(Feed feed);
 
 }

@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FeedReportRepository extends JpaRepository<FeedReport, FeedReportId> {
 
-    FeedReport deleteByFeed(Feed feed);
+    void deleteByFeed(Feed feed);
 
 }
