@@ -1,7 +1,7 @@
 package com.example.moizaspringserver.domain.follow.service;
 
 import com.example.moizaspringserver.domain.follow.entity.Follow;
-import com.example.moizaspringserver.domain.follow.presentation.dto.response.FollowerInfo;
+import com.example.moizaspringserver.domain.follow.presentation.dto.response.FollowerAndFollowingInfo;
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowerResponse;
 import com.example.moizaspringserver.domain.follow.repository.FollowRepository;
 import com.example.moizaspringserver.domain.user.entity.User;
@@ -25,14 +25,14 @@ public class FollowerQueryService {
         User user = userFacade.queryUserById(userId);
 
         List<Follow> followerList = followRepository.findAllByTargetUserWithUser(user);
-        List<FollowerInfo> followerInfoList = followerList.stream()
+        List<FollowerAndFollowingInfo> followerInfoList = followerList.stream()
                 .map(follow -> {
                     User follower = follow.getUser();
                     boolean isUserFollowingFollower = followRepository
                             .findByUserAndTargetUser(user, follower)
                             .isPresent();
 
-                    return FollowerInfo.builder()
+                    return FollowerAndFollowingInfo.builder()
                             .userId(follower.getId())
                             .name(follower.getName())
                             .profileImageUrl(follower.getProfileImageUrl())
