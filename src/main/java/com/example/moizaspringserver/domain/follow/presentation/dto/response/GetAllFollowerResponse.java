@@ -6,5 +6,5 @@ import java.util.List;
 
 @AllArgsConstructor
 public class GetAllFollowerResponse {
-    private final List<FollowerAndFollowingInfo> followerUserList;
+    private final List<FollowInfo> followerUserList;
 }

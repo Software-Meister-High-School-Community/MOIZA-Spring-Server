@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public class FollowerAndFollowingInfo {
+public class FollowInfo {
     private final Integer userId;
 
     private final String name;
