@@ -25,7 +25,9 @@ public enum ErrorCode {
     AUTH_CODE_ALREADY_VERIFIED(409, "Auth Code Already Verified"),
 
     NOTICE_NOT_FOUND(404, "Notice Not Found"),
-    NOTICE_ATTACHMENT_FILE_NOT_FOUND(404, "Notice Attachment File Not Found" );
+    NOTICE_ATTACHMENT_FILE_NOT_FOUND(404, "Notice Attachment File Not Found" ),
+  
+    FOLLOW_ALREADY_EXISTS(409, "Follow Already Exists");
 
 
     private final int status;

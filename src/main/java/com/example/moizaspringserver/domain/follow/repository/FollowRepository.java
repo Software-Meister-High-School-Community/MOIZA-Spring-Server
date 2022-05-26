@@ -9,9 +9,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FollowRepository extends CrudRepository<Follow, FollowId> {
     @Query("select follow from Follow follow join fetch follow.targetUser where follow.user=:user")
     List<Follow> findAllByUserWithTarget(@Param("user") User user);
+
+    Optional<Follow> findByUserAndTargetUser(User user, User targetUser);
 }

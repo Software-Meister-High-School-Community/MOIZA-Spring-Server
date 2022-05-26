@@ -55,6 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // notice
                 .antMatchers(HttpMethod.DELETE, "/notices/{notice-id}").hasAnyAuthority("ADMIN")
 
+                // follow
+                .antMatchers(HttpMethod.POST, "/follow/*").authenticated()
+                .antMatchers(HttpMethod.GET, "/following/*").authenticated()
+
                 .anyRequest().denyAll()
 
                 .and()

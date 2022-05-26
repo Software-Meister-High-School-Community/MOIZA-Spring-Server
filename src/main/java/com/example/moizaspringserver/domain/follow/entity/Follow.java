@@ -35,9 +35,7 @@ public class Follow extends BaseTimeEntity {
     private User targetUser;
 
     @Builder
-    public Follow(FollowId id, User user, User targetUser) {
+    public Follow(FollowId id) {
         this.id = id;
-        this.user = user;
-        this.targetUser = targetUser;
     }
 }
