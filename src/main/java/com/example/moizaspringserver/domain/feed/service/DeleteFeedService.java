@@ -1,8 +1,6 @@
 package com.example.moizaspringserver.domain.feed.service;
 
 import com.example.moizaspringserver.domain.category.repository.FeedCategoryRepository;
-import com.example.moizaspringserver.domain.comment.entity.Comment;
-import com.example.moizaspringserver.domain.comment.facade.CommentFacade;
 import com.example.moizaspringserver.domain.comment.repository.CommentAttachmentFileRepository;
 import com.example.moizaspringserver.domain.comment.repository.CommentRepository;
 import com.example.moizaspringserver.domain.feed.entity.Feed;
@@ -24,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class DeleteFeedService {
 
     private final UserFacade userFacade;
-    private final CommentFacade commentFacade;
     private final FeedFacade feedFacade;
     private final FeedRepository feedRepository;
     private final PublicFeedRepository publicFeedRepository;
