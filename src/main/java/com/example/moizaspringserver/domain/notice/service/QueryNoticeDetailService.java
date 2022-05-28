@@ -3,7 +3,6 @@ package com.example.moizaspringserver.domain.notice.service;
 import com.example.moizaspringserver.domain.notice.entity.Notice;
 import com.example.moizaspringserver.domain.notice.entity.NoticeAttachmentFile;
 import com.example.moizaspringserver.domain.notice.exception.NoticeNotFoundException;
-import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse;
 import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse.NoticeAttachmentFileResponse;
 import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse.NoticeDetail;
 import com.example.moizaspringserver.domain.notice.repository.NoticeAttachmentFileRepository;
