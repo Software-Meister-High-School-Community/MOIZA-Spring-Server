@@ -20,12 +20,12 @@ public class NoticeDetailResponse {
         private final String content;
         private final LocalDateTime createdAt;
         private final Boolean isUpdate;
-        private final List<NoticeAttachmentFile> attachmentFileUrl;
+        private final List<NoticeAttachmentFileResponse> attachmentFileUrl;
     }
 
     @Getter
-    @Builder
-    public static class NoticeAttachmentFile {
+    @AllArgsConstructor
+    public static class NoticeAttachmentFileResponse {
         private final String attachmentFileUrl;
     }
 }

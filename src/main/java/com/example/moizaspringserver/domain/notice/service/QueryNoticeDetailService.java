@@ -1,8 +1,10 @@
 package com.example.moizaspringserver.domain.notice.service;
 
 import com.example.moizaspringserver.domain.notice.entity.Notice;
+import com.example.moizaspringserver.domain.notice.entity.NoticeAttachmentFile;
 import com.example.moizaspringserver.domain.notice.exception.NoticeNotFoundException;
-import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse.NoticeAttachmentFile;
+import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse;
+import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse.NoticeAttachmentFileResponse;
 import com.example.moizaspringserver.domain.notice.presentation.dto.Response.NoticeDetailResponse.NoticeDetail;
 import com.example.moizaspringserver.domain.notice.repository.NoticeAttachmentFileRepository;
 import com.example.moizaspringserver.domain.notice.repository.NoticeRepository;
@@ -26,11 +28,9 @@ public class QueryNoticeDetailService {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> NoticeNotFoundException.EXCEPTION);
 
-        List<NoticeAttachmentFile> attachmentFileList = noticeAttachmentFileRepository.findAllById(id)
+        List<NoticeAttachmentFileResponse> attachmentFileList = noticeAttachmentFileRepository.findAllByNotice(notice)
                 .stream()
-                .map(noticeAttachmentFile -> NoticeAttachmentFile.builder()
-                        .attachmentFileUrl(noticeAttachmentFile.getAttachmentFileUrl())
-                        .build())
+                .map(this::getNoticeAttachmentFileList)
                 .collect(Collectors.toList());
 
         return NoticeDetail.builder()
@@ -43,8 +43,12 @@ public class QueryNoticeDetailService {
 
     }
 
-    public Boolean getIsUpdate(Notice notice) {
+    private Boolean getIsUpdate(Notice notice) {
         return notice.getUpdatedAt().equals(notice.getCreatedAt());
+    }
+
+    private NoticeAttachmentFileResponse getNoticeAttachmentFileList(NoticeAttachmentFile noticeAttachmentFile) {
+        return new NoticeAttachmentFileResponse(noticeAttachmentFile.getAttachmentFileUrl());
     }
 }
 
