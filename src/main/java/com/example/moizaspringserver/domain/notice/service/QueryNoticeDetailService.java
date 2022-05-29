@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +44,7 @@ public class QueryNoticeDetailService {
     }
 
     private Boolean getIsUpdate(Notice notice) {
-        return notice.getUpdatedAt().equals(notice.getCreatedAt());
+        return notice.getUpdatedAt().isEqual(null);
     }
 
     private NoticeAttachmentFileResponse getNoticeAttachmentFileList(NoticeAttachmentFile noticeAttachmentFile) {
