@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.HEAD, "/auth/id-validations").permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/email-verifications").permitAll()
 
-                //user
+                // user
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/users").authenticated()
                 .antMatchers(HttpMethod.GET, "/users/searching").authenticated()
@@ -55,6 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // follow
                 .antMatchers(HttpMethod.POST, "/follow/*").authenticated()
                 .antMatchers(HttpMethod.GET, "/following/*").authenticated()
+
+                // notice
+                .antMatchers(HttpMethod.GET, "/notices/{notice-id}").authenticated()
 
                 .anyRequest().denyAll()
 
