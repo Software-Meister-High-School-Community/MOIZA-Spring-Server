@@ -1,12 +1,10 @@
 package com.example.moizaspringserver.domain.follow.presentation.dto.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 import java.util.List;
 
-@Getter
 @AllArgsConstructor
-public class GetAllFollowingResponse {
-    private final List<FollowInfo> followingUserList;
+public class GetAllFollowerResponse {
+    private final List<FollowInfo> followerUserList;
 }
