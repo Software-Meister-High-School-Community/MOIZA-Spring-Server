@@ -82,8 +82,7 @@ public class User extends BaseTimeIdEntity {
         this.school = school;
     }
 
-    public void updateInfo(String profileImageUrl, String profileBackgroundColor,
-                               String introduce) {
+    public void updateInfo(String profileImageUrl, String profileBackgroundColor, String introduce) {
         this.profileImageUrl = profileImageUrl;
         this.profileBackgroundColor = profileBackgroundColor;
         this.introduce = introduce;

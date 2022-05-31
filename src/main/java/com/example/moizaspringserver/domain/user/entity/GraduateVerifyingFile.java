@@ -1,6 +1,5 @@
-package com.example.moizaspringserver.domain.graduate.entity;
+package com.example.moizaspringserver.domain.user.entity;
 
-import com.example.moizaspringserver.domain.user.entity.User;
 import com.example.moizaspringserver.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -8,13 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Getter
