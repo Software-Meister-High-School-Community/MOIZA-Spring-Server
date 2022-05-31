@@ -21,8 +21,8 @@ public class DeleteNoticeService {
 
         Notice notice = noticeFacade.getByNoticeId(id);
 
-        noticeRepository.delete(notice);
         noticeAttachmentFileRepository.deleteByNotice(notice);
+        noticeRepository.delete(notice);
 
     }
 }
