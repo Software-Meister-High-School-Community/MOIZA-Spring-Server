@@ -56,6 +56,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/follow/*").authenticated()
                 .antMatchers(HttpMethod.GET, "/following/*").authenticated()
 
+                // feeds
+                .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").authenticated()
+          
                 // notice
                 .antMatchers(HttpMethod.GET, "/notices/{notice-id}").authenticated()
 
