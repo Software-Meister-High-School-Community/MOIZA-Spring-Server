@@ -58,6 +58,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // feeds
                 .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").authenticated()
+          
+                // notice
+                .antMatchers(HttpMethod.GET, "/notices/{notice-id}").authenticated()
 
                 .anyRequest().denyAll()
 
