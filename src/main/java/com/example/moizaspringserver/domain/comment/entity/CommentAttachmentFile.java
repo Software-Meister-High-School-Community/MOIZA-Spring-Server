@@ -1,6 +1,6 @@
-package com.example.moizaspringserver.domain.notice.entity;
+package com.example.moizaspringserver.domain.comment.entity;
 
-import com.example.moizaspringserver.global.entity.BaseTimeIdEntity;
+import com.example.moizaspringserver.global.entity.BaseIdEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,21 +13,20 @@ import javax.validation.constraints.NotNull;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "tbl_notice_attachment_file")
-public class NoticeAttachmentFile extends BaseTimeIdEntity {
+@Table(name = "tbl_comment_attachment_file")
+public class CommentAttachmentFile extends BaseIdEntity {
 
     @NotNull
     @Length(max = 255)
     private String attachmentFileUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "notice_id", nullable = false)
-    private Notice notice;
+    @JoinColumn(name = "commnet_id", nullable = false)
+    private Comment comment;
 
     @Builder
-    public NoticeAttachmentFile(String attachmentFileUrl, Notice notice) {
+    public CommentAttachmentFile(String attachmentFileUrl, Comment comment) {
         this.attachmentFileUrl = attachmentFileUrl;
-        this.notice = notice;
+        this.comment = comment;
     }
-
 }
