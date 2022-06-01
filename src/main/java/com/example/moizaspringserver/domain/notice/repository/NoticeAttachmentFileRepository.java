@@ -4,8 +4,12 @@ import com.example.moizaspringserver.domain.notice.entity.Notice;
 import com.example.moizaspringserver.domain.notice.entity.NoticeAttachmentFile;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface NoticeAttachmentFileRepository extends CrudRepository<NoticeAttachmentFile, Integer> {
-    List<NoticeAttachmentFile> findAllByNotice(Notice notice);
+
+    Optional<NoticeAttachmentFile> findAllByNotice(Notice notice);
+
+    void deleteByNotice(Notice notice);
+
 }
