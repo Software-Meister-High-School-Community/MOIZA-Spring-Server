@@ -21,8 +21,6 @@ public enum ErrorCode {
 
     PASSWORD_MISMATCH(401, "Password Mismatch"),
 
-    NOTICE_NOT_FOUND(404, "Notice Not Found"),
-
     EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
     EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
 
@@ -45,7 +43,8 @@ public enum ErrorCode {
 
     NOTICE_NOT_FOUND(404, "Notice Not Found"),
     NOTICE_ATTACHMENT_FILE_NOT_FOUND(404, "Notice Attachment File Not Found" ),
-  
+
+
     FOLLOW_ALREADY_EXISTS(409, "Follow Already Exists");
 
 
