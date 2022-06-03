@@ -19,6 +19,8 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "User Not Found"),
     USER_ALREADY_EXISTS(409, "User Already Exists"),
 
+    FILE_NOT_FOUND(404, "File Not Found"),
+
     PASSWORD_MISMATCH(401, "Password Mismatch"),
 
     EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
