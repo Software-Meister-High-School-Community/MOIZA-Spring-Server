@@ -2,6 +2,7 @@ package com.example.moizaspringserver.domain.follow.presentation;
 
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowerResponse;
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowingResponse;
+import com.example.moizaspringserver.domain.follow.service.FollowDiscardService;
 import com.example.moizaspringserver.domain.follow.service.FollowEstablishService;
 import com.example.moizaspringserver.domain.follow.service.FollowQueryService;
 import com.example.moizaspringserver.domain.follow.service.FollowerQueryService;
@@ -18,6 +19,8 @@ public class FollowController {
     private final FollowerQueryService followerQueryService;
     private final FollowEstablishService followEstablishService;
 
+    private final FollowDiscardService followDiscardService;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{user-id}")
     public void addFollow(@PathVariable("user-id") Integer userId) {
@@ -32,5 +35,11 @@ public class FollowController {
     @GetMapping("/follower/{user-id}")
     public GetAllFollowerResponse getAllFollower(@PathVariable("user-id") Integer userId) {
         return followerQueryService.execute(userId);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{user-id}/following")
+    public void deleteFollowing(@PathVariable("user-id") Integer userId) {
+        followDiscardService.execute(userId);
     }
 }
