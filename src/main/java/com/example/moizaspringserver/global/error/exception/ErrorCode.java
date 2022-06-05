@@ -47,7 +47,8 @@ public enum ErrorCode {
     NOTICE_ATTACHMENT_FILE_NOT_FOUND(404, "Notice Attachment File Not Found" ),
 
 
-    FOLLOW_ALREADY_EXISTS(409, "Follow Already Exists");
+    FOLLOW_ALREADY_EXISTS(409, "Follow Already Exists"),
+    FOLLOW_NO_SUCH_FOLLOWER(404, "No such Follower");
 
 
     private final int status;
