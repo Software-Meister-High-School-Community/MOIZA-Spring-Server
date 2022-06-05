@@ -4,6 +4,7 @@ import com.example.moizaspringserver.domain.follow.presentation.dto.response.Get
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowingResponse;
 import com.example.moizaspringserver.domain.follow.service.FollowEstablishService;
 import com.example.moizaspringserver.domain.follow.service.FollowQueryService;
+import com.example.moizaspringserver.domain.follow.service.FollowerDeleteService;
 import com.example.moizaspringserver.domain.follow.service.FollowerQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ public class FollowController {
 
     private final FollowerQueryService followerQueryService;
     private final FollowEstablishService followEstablishService;
+
+    private final FollowerDeleteService followerDeleteService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{user-id}")
@@ -32,5 +35,11 @@ public class FollowController {
     @GetMapping("/follower/{user-id}")
     public GetAllFollowerResponse getAllFollower(@PathVariable("user-id") Integer userId) {
         return followerQueryService.execute(userId);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{user-id}/follower")
+    public void deleteFollower(@PathVariable("user-id") Integer userId) {
+        followerDeleteService.execute(userId);
     }
 }
