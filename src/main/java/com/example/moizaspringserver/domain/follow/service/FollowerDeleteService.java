@@ -16,11 +16,11 @@ public class FollowerDeleteService {
     private final FollowRepository followRepository;
 
     @Transactional
-    public void execute(int followerIdToDelete) {
+    public void execute(Integer followerIdToDelete) {
         User queryUser = userFacade.queryCurrentUser();
-        User followerToDelete = userFacade.queryUserById(followerIdToDelete);
+        User targetUser = userFacade.queryUserById(followerIdToDelete);
 
-        Follow followerRelation = followRepository.findByUserAndTargetUser(followerToDelete, queryUser)
+        Follow followerRelation = followRepository.findByUserAndTargetUser(targetUser, queryUser)
                 .orElseThrow(() -> NoSuchFollowerException.EXCEPTION);
 
         followRepository.delete(followerRelation);
