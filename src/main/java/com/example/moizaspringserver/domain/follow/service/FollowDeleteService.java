@@ -11,14 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class FollowDiscardService {
+public class FollowDeleteService {
     private final UserFacade userFacade;
     private final FollowRepository followRepository;
 
     @Transactional
-    public void execute(int userIdToDiscard) {
+    public void execute(int userIdToDelete) {
         User queryUser = userFacade.queryCurrentUser();
-        User targetUser = userFacade.queryUserById(userIdToDiscard);
+        User targetUser = userFacade.queryUserById(userIdToDelete);
 
         Follow relation = followRepository.findByUserAndTargetUser(queryUser, targetUser)
                 .orElseThrow(() -> NoSuchFollowException.EXCEPTION);

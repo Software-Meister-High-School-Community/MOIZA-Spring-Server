@@ -2,7 +2,7 @@ package com.example.moizaspringserver.domain.follow.presentation;
 
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowerResponse;
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowingResponse;
-import com.example.moizaspringserver.domain.follow.service.FollowDiscardService;
+import com.example.moizaspringserver.domain.follow.service.FollowDeleteService;
 import com.example.moizaspringserver.domain.follow.service.FollowEstablishService;
 import com.example.moizaspringserver.domain.follow.service.FollowQueryService;
 import com.example.moizaspringserver.domain.follow.service.FollowerQueryService;
@@ -19,7 +19,7 @@ public class FollowController {
     private final FollowerQueryService followerQueryService;
     private final FollowEstablishService followEstablishService;
 
-    private final FollowDiscardService followDiscardService;
+    private final FollowDeleteService followDeleteService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{user-id}")
@@ -40,6 +40,6 @@ public class FollowController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{user-id}/following")
     public void deleteFollowing(@PathVariable("user-id") Integer userId) {
-        followDiscardService.execute(userId);
+        followDeleteService.execute(userId);
     }
 }
