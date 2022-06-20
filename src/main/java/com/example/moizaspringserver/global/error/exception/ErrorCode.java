@@ -39,6 +39,7 @@ public enum ErrorCode {
     COMMENT_ATTACHMENT_FILE_NOT_FOUND(404, "Comment Not Found"),
 
     FEED_REPORT_NOT_FOUND(404, "Feed Report Not Found"),
+    FEED_REPORT_ALREADY_EXISTS(409, "Feed Report Already Exists"),
   
     EMAIL_CODE_REQUEST_OVER_LIMIT(429, "Email Code Request Over Limit"),
     AUTH_CODE_ALREADY_VERIFIED(409, "Auth Code Already Verified"),
