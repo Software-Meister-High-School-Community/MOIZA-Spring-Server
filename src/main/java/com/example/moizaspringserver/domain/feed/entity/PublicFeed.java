@@ -49,4 +49,8 @@ public class PublicFeed extends BaseTimeEntity {
         this.likeCount = likeCount;
         this.feed = feed;
     }
+
+    public void like() {
+        likeCount++;
+    }
 }

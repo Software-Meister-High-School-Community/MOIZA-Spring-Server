@@ -35,10 +35,7 @@ public class FeedLike extends BaseTimeEntity {
 	private Feed feed;
 
 	@Builder
-	public FeedLike(FeedLikeId id, User user,
-		Feed feed) {
+	public FeedLike(FeedLikeId id) {
 		this.id = id;
-		this.user = user;
-		this.feed = feed;
 	}
 }
