@@ -1,11 +1,13 @@
 package com.example.moizaspringserver.domain.auth.presentation;
 
 import com.example.moizaspringserver.domain.auth.presentation.dto.request.CheckAccountIdExistsRequest;
+import com.example.moizaspringserver.domain.auth.presentation.dto.request.CheckEmailAuthCodeRequest;
 import com.example.moizaspringserver.domain.auth.presentation.dto.request.SendEmailAuthCodeRequest;
 import com.example.moizaspringserver.domain.auth.presentation.dto.request.UserSignInRequest;
 import com.example.moizaspringserver.domain.auth.presentation.dto.response.SendEmailAuthCodeResponse;
 import com.example.moizaspringserver.domain.auth.presentation.dto.response.UserTokenRefreshResponse;
 import com.example.moizaspringserver.domain.auth.service.CheckAccountIdExistsService;
+import com.example.moizaspringserver.domain.auth.service.CheckEmailAuthCodeService;
 import com.example.moizaspringserver.domain.auth.service.SendEmailAuthCodeService;
 import com.example.moizaspringserver.domain.auth.service.TokenRefreshService;
 import com.example.moizaspringserver.domain.auth.service.UserSignInService;
@@ -24,6 +26,7 @@ public class AuthController {
     private final UserSignInService userSignInService;
     private final CheckAccountIdExistsService checkAccountIdExistsService;
     private final SendEmailAuthCodeService sendEmailAuthCodeService;
+    private final CheckEmailAuthCodeService checkEmailAuthCodeService;
 
     @PutMapping("/tokens")
     public UserTokenRefreshResponse userTokenRefresh(@RequestHeader("Refresh-Token") String refreshToken) {
@@ -44,6 +47,11 @@ public class AuthController {
     @PostMapping("/email-verifications")
     public SendEmailAuthCodeResponse sendEmailAuthCode(@RequestBody @Valid SendEmailAuthCodeRequest request) {
         return sendEmailAuthCodeService.execute(request);
+    }
+
+    @RequestMapping(method = RequestMethod.HEAD, path = "/email-verifications")
+    public void checkEmailAuthCode(@RequestBody CheckEmailAuthCodeRequest request) {
+        checkEmailAuthCodeService.execute(request);
     }
 
 }
