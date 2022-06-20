@@ -2,7 +2,7 @@ package com.example.moizaspringserver.domain.feed.presenstation;
 
 import com.example.moizaspringserver.domain.feed.presenstation.dto.response.PopularFeedListResponse;
 import com.example.moizaspringserver.domain.feed.service.DeleteFeedService;
-import com.example.moizaspringserver.domain.feed.service.GetPopularFeedList;
+import com.example.moizaspringserver.domain.feed.service.GetPopularFeedListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class FeedController {
 
     private final DeleteFeedService deleteFeedService;
-    private final GetPopularFeedList getPopularFeedList;
+    private final GetPopularFeedListService getPopularFeedListService;
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
@@ -23,6 +23,6 @@ public class FeedController {
 
     @GetMapping("/lists/populars")
     public PopularFeedListResponse popularFeedList() {
-        return getPopularFeedList.execute();
+        return getPopularFeedListService.execute();
     }
 }
