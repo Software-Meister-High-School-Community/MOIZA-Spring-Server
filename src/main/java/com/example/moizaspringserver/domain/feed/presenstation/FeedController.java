@@ -21,7 +21,7 @@ public class FeedController {
         deleteFeedService.execute(feedId);
     }
 
-    @GetMapping
+    @GetMapping("/{feed-id}")
     public FeedDetailsResponse feedList(@PathVariable("feed-id") Integer feedId) {
         return feedDetailsService.execute(feedId);
     }
