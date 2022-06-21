@@ -10,6 +10,8 @@ public interface CommentRepository extends CrudRepository<Comment, Integer> {
 
     Optional<Comment> findAllByFeed(Feed feed);
 
+    Optional<Comment> findAllByParentComment(Comment comment);
+
     void deleteAllByFeed(Feed feed);
 
 }

@@ -19,7 +19,7 @@ import com.example.moizaspringserver.domain.feed.facade.FeedFacade;
 import com.example.moizaspringserver.domain.feed.presenstation.dto.response.FeedDetailsResponse;
 import com.example.moizaspringserver.domain.feed.presenstation.dto.response.ImageUrlListResponse;
 import com.example.moizaspringserver.domain.feed.presenstation.dto.response.ImageUrlListResponse.ImageUrlResponse;
-import com.example.moizaspringserver.domain.feed.respository.FeedAttachmentFileRepository;
+import com.example.moizaspringserver.domain.feed.repository.FeedAttachmentFileRepository;
 import com.example.moizaspringserver.domain.user.entity.User;
 import com.example.moizaspringserver.domain.user.facade.UserFacade;
 import com.example.moizaspringserver.domain.user.presentation.dto.response.AuthorResponse;
