@@ -58,9 +58,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/notices/{notice-id}").hasAnyAuthority("ADMIN")
 
                 // follow
-                .antMatchers(HttpMethod.POST, "/follow/*").authenticated()
-                .antMatchers(HttpMethod.GET, "/follow/following/*").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/follow/*/follower").authenticated()
+                .antMatchers(HttpMethod.POST, "/follow/{user-id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/follow/following/{user-id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/follow/{user-id}/follower").authenticated()
 
                 // feeds
                 .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").authenticated()
