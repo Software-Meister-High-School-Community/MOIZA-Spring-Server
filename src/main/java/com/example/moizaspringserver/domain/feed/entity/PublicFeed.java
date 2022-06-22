@@ -1,5 +1,6 @@
 package com.example.moizaspringserver.domain.feed.entity;
 
+import com.example.moizaspringserver.domain.feed.presenstation.dto.request.UpdateFeedRequest;
 import com.example.moizaspringserver.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -49,4 +50,10 @@ public class PublicFeed extends BaseTimeEntity {
         this.likeCount = likeCount;
         this.feed = feed;
     }
+
+    public void updateFeedContent(UpdateFeedRequest request) {
+        this.title = request.getTitle();
+        this.content = request.getContent();
+    }
+
 }
