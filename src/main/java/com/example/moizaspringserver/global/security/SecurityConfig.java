@@ -1,5 +1,6 @@
 package com.example.moizaspringserver.global.security;
 
+
 import com.example.moizaspringserver.global.enums.UserType;
 import com.example.moizaspringserver.global.filter.JwtTokenFilter;
 import lombok.RequiredArgsConstructor;
@@ -63,7 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // feeds
                 .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").authenticated()
-          
+                .antMatchers(HttpMethod.PATCH, "/feeds/{feed-id}").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
+
                 // notice
                 .antMatchers(HttpMethod.GET, "/notices/{notice-id}").authenticated()
 
