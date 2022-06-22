@@ -5,9 +5,9 @@ import com.example.moizaspringserver.domain.comment.repository.CommentAttachment
 import com.example.moizaspringserver.domain.comment.repository.CommentRepository;
 import com.example.moizaspringserver.domain.feed.entity.Feed;
 import com.example.moizaspringserver.domain.feed.facade.FeedFacade;
-import com.example.moizaspringserver.domain.feed.respository.FeedRepository;
-import com.example.moizaspringserver.domain.feed.respository.LocalFeedRepository;
-import com.example.moizaspringserver.domain.feed.respository.PublicFeedRepository;
+import com.example.moizaspringserver.domain.feed.repository.FeedRepository;
+import com.example.moizaspringserver.domain.feed.repository.LocalFeedRepository;
+import com.example.moizaspringserver.domain.feed.repository.PublicFeedRepository;
 import com.example.moizaspringserver.domain.like.repository.FeedLikeRepository;
 import com.example.moizaspringserver.domain.report.repository.FeedReportRepository;
 import com.example.moizaspringserver.domain.user.entity.User;
