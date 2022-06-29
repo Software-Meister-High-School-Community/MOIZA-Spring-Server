@@ -2,7 +2,6 @@ package com.example.moizaspringserver.domain.feed.presenstation;
 
 import com.example.moizaspringserver.domain.feed.service.AddLikeService;
 import com.example.moizaspringserver.domain.feed.service.DeleteFeedService;
-import javax.persistence.criteria.CriteriaBuilder.In;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
