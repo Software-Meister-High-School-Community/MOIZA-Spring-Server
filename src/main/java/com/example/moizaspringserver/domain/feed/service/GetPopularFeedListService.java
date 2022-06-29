@@ -1,6 +1,5 @@
 package com.example.moizaspringserver.domain.feed.service;
 
-import com.example.moizaspringserver.domain.category.entity.FeedCategoryId;
 import com.example.moizaspringserver.domain.category.repository.FeedCategoryRepository;
 import com.example.moizaspringserver.domain.feed.entity.PublicFeed;
 import com.example.moizaspringserver.domain.feed.presenstation.dto.response.PopularFeedListResponse;
