@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +25,7 @@ public class GetPopularFeedListService {
 	private final FeedCategoryRepository feedCategoryRepository;
 	private final UserFacade userFacade;
 
+	@Transactional(readOnly = true)
 	public PopularFeedListResponse execute() {
 
 		List<PublicFeed> publicFeedList = publicFeedRepository
