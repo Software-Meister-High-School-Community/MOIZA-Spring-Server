@@ -15,13 +15,13 @@ public class CreateFeedRequest {
     @NotBlank(message = "title은 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     private String title;
 
-    @NotNull(message = "content은 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
+    @NotNull(message = "content는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     private String content;
 
     @NotNull(message = "feed_type은 Null일 수 없습니다.")
     private FeedType feedType;
 
-    @NotNull(message = "category은 Null일 수 없습니다.")
+    @NotBlank(message = "category은 Null일 수 없습니다.")
     private String category;
 
     @NotNull(message = "image_urls은 Null일 수 없습니다.")

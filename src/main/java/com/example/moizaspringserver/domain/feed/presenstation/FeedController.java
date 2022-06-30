@@ -25,7 +25,7 @@ public class FeedController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void createFeed(@Valid @RequestBody CreateFeedRequest request) {
+    public void createFeed(@RequestBody @Valid CreateFeedRequest request) {
         createFeedService.execute(request);
     }
 
