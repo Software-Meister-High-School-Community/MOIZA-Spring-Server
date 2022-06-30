@@ -25,7 +25,7 @@ public class FeedController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/{feed-id}")
-    public void updateFeed(@Valid @RequestBody UpdateFeedRequest request, @PathVariable("feed-id") Integer feedId) {
+    public void updateFeed(@RequestBody @Valid UpdateFeedRequest request, @PathVariable("feed-id") Integer feedId) {
         updateFeedService.execute(request, feedId);
     }
 }

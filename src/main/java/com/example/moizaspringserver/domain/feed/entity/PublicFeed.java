@@ -51,9 +51,11 @@ public class PublicFeed extends BaseTimeEntity {
         this.feed = feed;
     }
 
-    public void updateFeedContent(UpdateFeedRequest request) {
-        this.title = request.getTitle();
-        this.content = request.getContent();
+    public void updateFeedTitle(String title) {
+        this.title = title;
+    }
+    public void updateFeedContent(String content) {
+        this.content = content;
     }
 
 }

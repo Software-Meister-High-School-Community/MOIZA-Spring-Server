@@ -32,7 +32,8 @@ public class UpdateFeedService {
         }
         // TODO PR#105 머지시 리팩토링
 
-        publicFeed.updateFeedContent(request);
+        publicFeed.updateFeedTitle(request.getTitle());
+        publicFeed.updateFeedContent(request.getContent());
 
         // TODO 사진 올리는거 없어서 나중에 추가되면 변경
     }

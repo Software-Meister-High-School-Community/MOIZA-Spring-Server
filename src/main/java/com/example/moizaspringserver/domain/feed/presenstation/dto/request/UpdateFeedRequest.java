@@ -15,7 +15,7 @@ public class UpdateFeedRequest {
     @NotBlank(message = "title은 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     private String title;
 
-    @NotNull(message = "content은 Null일 수 없습니다.")
+    @NotNull(message = "content는 Null일 수 없습니다.")
     private String content;
 
     @NotNull(message = "feed_type은 Null일 수 없습니다.")
