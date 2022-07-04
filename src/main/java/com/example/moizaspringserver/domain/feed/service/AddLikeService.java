@@ -25,8 +25,6 @@ public class AddLikeService {
 		PublicFeed feed = publicFeedRepository.findById(feedId)
 			.orElseThrow(() -> FeedNotFoundException.EXCEPTION);
 
-		feed.like();
-
 		FeedLike feedLike = FeedLike.builder()
 			.id(FeedLikeId.builder()
 				.user(
@@ -36,6 +34,8 @@ public class AddLikeService {
 				.feed(feed.getFeedId())
 				.build())
 			.build();
+
+		feed.addLike();
 
 		feedLikeRepository.save(feedLike);
 	}
