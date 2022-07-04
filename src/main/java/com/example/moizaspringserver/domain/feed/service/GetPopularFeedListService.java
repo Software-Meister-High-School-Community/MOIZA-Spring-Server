@@ -27,9 +27,11 @@ public class GetPopularFeedListService {
 	@Transactional(readOnly = true)
 	public PopularFeedListResponse execute() {
 
+		LocalDateTime now = LocalDateTime.now();
+
 		List<PublicFeed> publicFeedList = publicFeedRepository
 			.findTop8ByCreatedAtBetweenOrderByLikeCountDesc(
-				LocalDateTime.now().minusDays(1), LocalDateTime.now()
+				now.minusDays(1), now
 			);
 
 		List<PopularFeed> popularFeedList = publicFeedList
