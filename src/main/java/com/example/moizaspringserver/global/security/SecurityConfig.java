@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/users/graduate-verifications").hasAuthority(UserType.ROLE_USER.name())
 
                 // notice
-                .antMatchers(HttpMethod.DELETE, "/notices/{notice-id}").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/notices/{notice-id}").hasAnyAuthority(UserType.ROLE_ADMIN.name())
 
                 // follow
                 .antMatchers(HttpMethod.POST, "/follow/*").authenticated()
@@ -64,6 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // feeds
                 .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").authenticated()
+                .antMatchers(HttpMethod.POST, "/feeds").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
+          
                 .antMatchers(HttpMethod.PATCH, "/feeds/temporaries/{feed-id}").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
 
                 // notice
