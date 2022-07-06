@@ -4,10 +4,8 @@ import com.example.moizaspringserver.domain.user.presentation.dto.request.Update
 import com.example.moizaspringserver.domain.user.presentation.dto.request.UserSingUpRequest;
 import com.example.moizaspringserver.domain.user.presentation.dto.request.VerifyGraduateRequest;
 import com.example.moizaspringserver.domain.user.presentation.dto.response.UserListResponse;
-import com.example.moizaspringserver.domain.user.service.SearchUserService;
-import com.example.moizaspringserver.domain.user.service.UpdateMyInfoService;
-import com.example.moizaspringserver.domain.user.service.UserSingUpService;
-import com.example.moizaspringserver.domain.user.service.VerifyGraduateService;
+import com.example.moizaspringserver.domain.user.presentation.dto.response.UserProfile;
+import com.example.moizaspringserver.domain.user.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -26,6 +24,8 @@ public class UserController {
     private final UpdateMyInfoService updateMyInfoService;
     private final SearchUserService searchUserService;
     private final VerifyGraduateService verifyGraduateService;
+
+    private final QueryProfileService queryProfileService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -52,4 +52,8 @@ public class UserController {
         verifyGraduateService.execute(request);
     }
 
+    @GetMapping("/{user-id}")
+    public UserProfile getUserProfile(@PathVariable("user-id") Integer userId) {
+        return queryProfileService.execute(userId);
+    }
 }
