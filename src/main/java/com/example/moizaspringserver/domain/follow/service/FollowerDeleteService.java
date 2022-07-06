@@ -1,7 +1,7 @@
 package com.example.moizaspringserver.domain.follow.service;
 
 import com.example.moizaspringserver.domain.follow.entity.Follow;
-import com.example.moizaspringserver.domain.follow.exception.NoSuchFollowerException;
+import com.example.moizaspringserver.domain.follow.exception.NoSuchFollowException;
 import com.example.moizaspringserver.domain.follow.repository.FollowRepository;
 import com.example.moizaspringserver.domain.user.entity.User;
 import com.example.moizaspringserver.domain.user.facade.UserFacade;
@@ -21,7 +21,7 @@ public class FollowerDeleteService {
         User targetUser = userFacade.queryUserById(followerIdToDelete);
 
         Follow followerRelation = followRepository.findByUserAndTargetUser(targetUser, queryUser)
-                .orElseThrow(() -> NoSuchFollowerException.EXCEPTION);
+                .orElseThrow(() -> NoSuchFollowException.EXCEPTION);
 
         followRepository.delete(followerRelation);
     }
