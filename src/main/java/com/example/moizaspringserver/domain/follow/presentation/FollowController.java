@@ -2,10 +2,7 @@ package com.example.moizaspringserver.domain.follow.presentation;
 
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowerResponse;
 import com.example.moizaspringserver.domain.follow.presentation.dto.response.GetAllFollowingResponse;
-import com.example.moizaspringserver.domain.follow.service.FollowEstablishService;
-import com.example.moizaspringserver.domain.follow.service.FollowQueryService;
-import com.example.moizaspringserver.domain.follow.service.FollowerDeleteService;
-import com.example.moizaspringserver.domain.follow.service.FollowerQueryService;
+import com.example.moizaspringserver.domain.follow.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +32,17 @@ public class FollowController {
     @GetMapping("/follower/{user-id}")
     public GetAllFollowerResponse getAllFollower(@PathVariable("user-id") Integer userId) {
         return followerQueryService.execute(userId);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{user-id}/following")
+    public void deleteFollowing(@PathVariable("user-id") Integer userId) {
+        followDeleteService.execute(userId);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{user-id}/follower")
+    public void deleteFollower(@PathVariable("user-id") Integer userId) {
+        followerDeleteService.execute(userId);
     }
 }
