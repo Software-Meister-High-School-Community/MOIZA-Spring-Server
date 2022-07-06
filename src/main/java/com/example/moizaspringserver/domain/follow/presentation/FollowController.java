@@ -18,8 +18,8 @@ public class FollowController {
 
     private final FollowerQueryService followerQueryService;
     private final FollowEstablishService followEstablishService;
-
     private final FollowerDeleteService followerDeleteService;
+    private final FollowDeleteService followDeleteService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{user-id}")
@@ -35,11 +35,5 @@ public class FollowController {
     @GetMapping("/follower/{user-id}")
     public GetAllFollowerResponse getAllFollower(@PathVariable("user-id") Integer userId) {
         return followerQueryService.execute(userId);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{user-id}/follower")
-    public void deleteFollower(@PathVariable("user-id") Integer userId) {
-        followerDeleteService.execute(userId);
     }
 }

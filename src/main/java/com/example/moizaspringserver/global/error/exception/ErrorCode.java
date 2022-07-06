@@ -48,8 +48,7 @@ public enum ErrorCode {
 
 
     FOLLOW_ALREADY_EXISTS(409, "Follow Already Exists"),
-    FOLLOW_NO_SUCH_FOLLOWER(404, "No such Follower");
-
+    FOLLOW_NOT_FOUND(404, "No such Follow");
 
     private final int status;
     private final String message;

@@ -38,4 +38,9 @@ public class LocalFeed extends BaseTimeEntity {
         this.feed = feed;
     }
 
+    public void updateFeed(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
 }
