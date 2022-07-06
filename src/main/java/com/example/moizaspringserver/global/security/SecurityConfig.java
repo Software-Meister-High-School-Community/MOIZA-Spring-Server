@@ -53,6 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PATCH, "/users").authenticated()
                 .antMatchers(HttpMethod.GET, "/users/searching").authenticated()
                 .antMatchers(HttpMethod.POST, "/users/graduate-verifications").hasAuthority(UserType.ROLE_USER.name())
+                .antMatchers(HttpMethod.GET, "/").authenticated()
+                .antMatchers(HttpMethod.GET, "/{user-id}").authenticated()
 
                 // notice
                 .antMatchers(HttpMethod.DELETE, "/notices/{notice-id}").hasAnyAuthority("ADMIN")
