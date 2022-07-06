@@ -60,11 +60,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // follow
                 .antMatchers(HttpMethod.POST, "/follow/*").authenticated()
                 .antMatchers(HttpMethod.GET, "/following/*").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/*/following").authenticated()
 
                 // feeds
                 .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").authenticated()
                 .antMatchers(HttpMethod.POST, "/feeds").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
           
+                .antMatchers(HttpMethod.PATCH, "/feeds/temporaries/{feed-id}").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
+
                 // notice
                 .antMatchers(HttpMethod.GET, "/notices/{notice-id}").authenticated()
 
