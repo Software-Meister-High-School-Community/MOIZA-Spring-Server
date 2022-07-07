@@ -58,14 +58,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/notices/{notice-id}").hasAnyAuthority("ADMIN")
 
                 // follow
-                .antMatchers(HttpMethod.POST, "/follow/*").authenticated()
-                .antMatchers(HttpMethod.GET, "/following/*").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/*/following").authenticated()
+                .antMatchers(HttpMethod.POST, "/follow/{user-id}").authenticated()
+                .antMatchers(HttpMethod.GET, "/follow/following/{user-id}").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/follow/{user-id}/follower").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/{user-id}/following").authenticated()
 
                 // feeds
                 .antMatchers(HttpMethod.DELETE, "/feeds/{feed-id}").authenticated()
-                .antMatchers(HttpMethod.PATCH, "/feeds/temporaries/{feed-id}").hasAnyAuthority(UserType.ROLE_STUDENT.name(), UserType.ROLE_GRADUATE.name())
-
+          
                 // notice
                 .antMatchers(HttpMethod.GET, "/notices/{notice-id}").authenticated()
 
