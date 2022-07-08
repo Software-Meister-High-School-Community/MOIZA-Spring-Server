@@ -13,7 +13,8 @@ public enum ErrorCode {
     INVALID_TOKEN(401, "Invalid Token"),
     REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found"),
     INVALID_ROLE(401, "Invalid Role"),
-  
+    INTERNAL_SERVER_ERROR(500, " Internal Server"),
+
     CREDENTIALS_NOT_FOUND(404, "Credentials Not Found"),
 
     USER_NOT_FOUND(404, "User Not Found"),
@@ -48,7 +49,8 @@ public enum ErrorCode {
     NOTICE_ATTACHMENT_FILE_NOT_FOUND(404, "Notice Attachment File Not Found" ),
 
 
-    FOLLOW_ALREADY_EXISTS(409, "Follow Already Exists");
+    FOLLOW_ALREADY_EXISTS(409, "Follow Already Exists"),
+    FOLLOW_NOT_FOUND(404, "No such Follow");
 
 
     private final int status;
