@@ -2,6 +2,7 @@ package com.example.moizaspringserver.domain.feed.presenstation;
 
 import com.example.moizaspringserver.domain.feed.presenstation.dto.request.LocalFeedRequest;
 import com.example.moizaspringserver.domain.feed.service.DeleteFeedService;
+import com.example.moizaspringserver.domain.feed.service.DeleteLocalFeedService;
 import com.example.moizaspringserver.domain.feed.service.UpdateLocalFeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 public class FeedController {
 
     private final DeleteFeedService deleteFeedService;
+    private final DeleteLocalFeedService deleteLocalFeedService;
     private final UpdateLocalFeedService updateLocalFeedService;
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -24,6 +26,11 @@ public class FeedController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/temporaries/{feed-id}")
+    public void deleteLocalFeed(@PathVariable("feed-id") Integer feedId) {
+        deleteLocalFeedService.execute(feedId);
+    }
+  
     @PatchMapping("/temporaries/{feed-id}")
     public void updateLocalFeed(@RequestBody @Valid LocalFeedRequest request, @PathVariable("feed-id") Integer feedId) {
         updateLocalFeedService.execute(request, feedId);
