@@ -26,6 +26,7 @@ public enum ErrorCode {
 
     EMAIL_CODE_NOT_FOUND(404, "Email Code Not Found"),
     EMAIL_CODE_NOT_VERIFIED(401, "Email Code Not Verified"),
+    INVALID_AUTH_CODE(401, "Invalid Auth Code"),
 
     FEED_NOT_FOUND(404, "Feed Not Found"),
     LOCAL_FEED_NOT_FOUND(404, "Local Feed Not Found"),

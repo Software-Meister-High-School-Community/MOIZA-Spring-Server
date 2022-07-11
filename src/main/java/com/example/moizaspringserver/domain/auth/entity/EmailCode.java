@@ -39,4 +39,9 @@ public class EmailCode {
 		this.authCode = authCode;
 		this.timeToLive = 180L;
 	}
+
+	public void checkAuthCode() {
+		isVerify = true;
+		timeToLive = 999999999999L;
+	}
 }
