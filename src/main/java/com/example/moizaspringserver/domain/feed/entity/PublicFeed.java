@@ -42,6 +42,13 @@ public class PublicFeed extends BaseTimeEntity {
     @ColumnDefault("0")
     private Integer likeCount;
 
+    @NotNull
+    @ColumnDefault("0")
+    private Integer viewCount;
+    public void addViewCounts(Integer views) {
+        viewCount += views;
+    }
+
     @Builder
     public PublicFeed(String title, String content, Integer likeCount, Feed feed) {
         this.title = title;
