@@ -17,7 +17,7 @@ public class ViewCountFacade {
 
     private final ViewCountProperties viewCountProperties;
     private final PublicFeedRepository publicFeedRepository;
-    private final Map<Integer, Integer> viewCounts = new ConcurrentHashMap<Integer, Integer>();
+    private final Map<Integer, Integer> viewCounts = new ConcurrentHashMap<>();
 
     @Transactional(readOnly = true)
     public Integer getViewCountOf(Integer feedId) {
@@ -35,8 +35,9 @@ public class ViewCountFacade {
         viewCounts.remove(feedId);
     }
 
+    @Transactional
     public void addViewCountOf(Integer feedId) {
-        if(viewCounts.containsKey(feedId)) viewCounts.put(feedId, 0);
+        viewCounts.computeIfAbsent(feedId, (key) -> viewCounts.put(key, 0));
 
         viewCounts.put(feedId, viewCounts.get(feedId));
 
