@@ -37,3 +37,7 @@ aws:
   secret-key : ${SES_SECRET}
   ses-source : ${SES_SOURCE}
   aws-regions : ${AWS_REGIONS:ap-northeast-2}
+
+feed:
+  viewcount:
+    cache-maximum: 10
