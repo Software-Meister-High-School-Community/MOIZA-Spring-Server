@@ -40,4 +40,4 @@ aws:
 
 feed:
   viewcount:
-    cache-maximum: 10
+    cache-maximum: ${VIEWCOUNT_CACHE_MAXIMUM}
