@@ -37,7 +37,7 @@ public class ViewCountFacade {
 
     @Transactional
     public void addViewCountOf(Integer feedId) {
-        viewCounts.computeIfAbsent(feedId, (key) -> viewCounts.put(key, 0));
+        viewCounts.computeIfAbsent(feedId, key -> viewCounts.put(key, 0));
 
         viewCounts.put(feedId, viewCounts.get(feedId));
 
